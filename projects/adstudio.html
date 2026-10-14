@@ -1,0 +1,939 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AdStudio | Ruoxi Zhang</title>
+  <style>
+    :root{--ink:#3f4346;--blue:#233f6e;--muted:#68717a;--line:#e8eaed;--paper:#fff;--tag:#8f1930}
+    *{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font:18px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+    a{color:var(--blue)} .top{border-bottom:1px solid var(--line)} .nav,main{max-width:1060px;margin:auto;padding:22px 28px}.nav a{text-decoration:none;font-weight:650}
+    main{padding-top:58px;padding-bottom:80px} h1{font-size:2.25rem;line-height:1.25;margin:0 0 16px;color:#30353a} h2{font-size:1.35rem;margin:42px 0 10px;border-bottom:1px solid var(--line);padding-bottom:8px}
+    .meta{color:var(--muted)} .status{color:var(--tag);margin-left:10px}.lead{font-size:1.15rem;max-width:900px}.actions{display:flex;gap:12px;margin:26px 0}.button{border:1px solid var(--blue);padding:8px 15px;border-radius:4px;text-decoration:none}.primary{background:var(--blue);color:white}
+    ul{padding-left:24px}@media(max-width:640px){body{font-size:16px}.nav,main{padding-left:20px;padding-right:20px}main{padding-top:36px}h1{font-size:1.75rem}}
+    body{font-family:"Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.55;letter-spacing:0}
+    main{max-width:1300px;padding:0 20px 80px}
+    .nav{max-width:1300px;padding:22px 20px;font-size:.94rem}
+    .paper-hero{max-width:1080px;margin:38px auto 52px;text-align:center}
+    .venue{margin:0 0 14px;color:var(--tag);font-size:.85rem;font-weight:800}
+    .paper-title{margin:0 auto 28px;color:var(--ink);line-height:1.12}
+    .paper-name{display:block;font-size:80px;font-weight:900}
+    .paper-subtitle{display:block;max-width:980px;margin:14px auto 0;font-size:44px;font-weight:650;text-wrap:balance}
+    .authors{margin:0 0 8px;color:var(--blue);font-size:20.48px;font-weight:620;line-height:1.55}
+    .authors strong{font-weight:800}
+    .review-status{margin:0;color:var(--muted);font-size:16px}
+    .paper-hero .actions{display:flex;justify-content:center;gap:10px;margin:24px 0 0}
+    .paper-hero .button{display:inline-flex;align-items:center;justify-content:center;min-width:112px;padding:10px 18px;border:1px solid #333943;border-radius:999px;background:#333943;color:#fff;text-decoration:none;font-size:.93rem;font-weight:700;transition:.16s ease}
+    .paper-hero .button:hover{transform:translateY(-2px);background:var(--blue);border-color:var(--blue)}
+    a:focus-visible{outline:3px solid var(--blue);outline-offset:5px}
+    #overview{margin:0 auto}
+    #overview h2,.rationale > h2{position:relative;margin:0 0 24px;padding:0 0 15px;border-bottom:1px solid var(--line);color:var(--tag);font-size:28px;font-weight:750;line-height:1.3}
+    #overview h2::after,.rationale > h2::after{position:absolute;bottom:-1px;left:0;width:64px;height:3px;background:var(--tag);content:""}
+    .overview-intro{margin:0 0 28px;color:#555d67;font-size:18px;line-height:1.75}
+    .overview-intro strong{color:var(--blue);font-weight:750}
+    .overview-intro .workflow-chain{color:inherit}
+    .workflow-figure{margin:0}
+    .workflow-figure a{display:block;cursor:zoom-in}
+    .workflow-figure img{display:block;width:100%;height:auto}
+    .workflow-figure figcaption{margin-top:14px;color:#767c84;font-size:13px;line-height:1.65}
+    .rationale{margin-top:72px;color:#555d67}
+    .rationale h3{margin:0 0 14px;color:var(--tag);font-size:21px;font-weight:750;line-height:1.4}
+    .motivation-context{margin:0 0 30px;padding-left:22px;font-size:16px;line-height:1.7}
+    .motivation-context li + li{margin-top:10px}
+    .motivation-context li::marker{color:var(--blue)}
+    .motivation-context strong{color:var(--blue);font-weight:750}
+    .study-intro{margin:0;max-width:1120px;font-size:16px;line-height:1.7}
+    .study-intro strong{font-weight:750}
+    .participant-groups{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:22px}
+    .participant-group{min-width:0;text-align:center}
+    .participant-group + .participant-group{border-left:1px solid var(--line);padding-left:24px}
+    .participant-group h4{margin:0;color:var(--blue);font-size:16px;font-weight:750;line-height:1.4}
+    .participant-avatar{width:min(100%,120px);aspect-ratio:1;margin:0 auto 10px;background-image:url('../assets/adstudio-practitioner-groups.png');background-size:300% 100%;background-repeat:no-repeat}
+    .participant-avatar.ai{background-position:0 0}.participant-avatar.content{background-position:50% 0}.participant-avatar.brand{background-position:100% 0}
+    .study-findings{margin-top:48px}
+    .challenge-goal-table{width:100%;border-collapse:collapse;table-layout:fixed;text-align:left;border-top:2px solid var(--ink)}
+    .challenge-goal-table col:first-child{width:54%}
+    .challenge-goal-table thead th{padding:14px 22px;color:var(--blue);font-size:16px;font-weight:750;background:#f5f7fa;border-bottom:1px solid var(--line)}
+    .challenge-goal-table tbody th,.challenge-goal-table tbody td{padding:24px 22px;vertical-align:top;border-bottom:1px solid var(--line);font-weight:400}
+    .challenge-goal-table tr > :first-child{border-right:1px solid var(--line)}
+    .challenge-heading,.goal-heading{display:flex;align-items:baseline;gap:12px;margin-bottom:14px}
+    .challenge-number{color:var(--tag);font-size:15px;font-weight:800;flex-shrink:0}
+    .challenge-heading h4{margin:0;color:var(--ink);font-size:18px;line-height:1.45;font-weight:750}
+    .practitioner-quote{margin:12px 0 0;padding-left:14px;border-left:2px solid #dce2e9;color:#555d67;font-size:14px;line-height:1.65}
+    .practitioner-quote p{display:inline;margin:0}
+    .practitioner-quote cite{margin-left:8px;color:var(--blue);font-size:12px;font-style:normal;font-weight:700;white-space:nowrap}
+    .goal-number{color:var(--blue);font-size:16px;font-weight:800;flex-shrink:0}
+    .goal-heading h4{margin:0;color:var(--blue);font-size:17px;font-weight:750;line-height:1.45}
+    .goal-match p{margin:0;font-size:15px;line-height:1.65}
+    .goal-match + .goal-match{margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+    .goal-match .cross-cutting{margin-top:10px;color:var(--muted);font-size:12px}
+    .evaluation{margin-top:72px;color:#555d67}
+    .evaluation > h2{position:relative;margin:0 0 24px;padding:0 0 15px;border-bottom:1px solid var(--line);color:var(--tag);font-size:28px;font-weight:750;line-height:1.3}
+    .evaluation > h2::after{position:absolute;bottom:-1px;left:0;width:64px;height:3px;background:var(--tag);content:""}
+    .evaluation strong{color:var(--blue)}
+    .evaluation strong.study-number{color:var(--tag);font-weight:750}
+    .baseline-table-scroll{overflow-x:auto;overscroll-behavior-x:contain;margin:20px 0}
+    .baseline-table{width:100%;min-width:1040px;border-collapse:collapse;table-layout:fixed;text-align:left;font-size:15px;line-height:1.65}
+    .baseline-table .baseline-input-col{width:24%}
+    .baseline-table .baseline-strategy-col{width:31%}
+    .baseline-table .baseline-adstudio-col{width:45%}
+    .baseline-table .baseline-feedback{white-space:nowrap}
+    .baseline-table th{padding:12px 18px;color:var(--blue);background:#f5f7fa;border-top:2px solid var(--blue);border-bottom:1px solid var(--line);font-size:17px}
+    .baseline-table td{vertical-align:top;padding:16px 18px}
+    .baseline-table tr > * + *{border-left:1px solid var(--line)}
+    .baseline-table ul{margin:0;padding-left:18px}
+    .baseline-table li + li{margin-top:8px}
+    .baseline-table li::marker{color:var(--blue)}
+    .baseline-table tfoot td{padding-top:8px;border-bottom:2px solid var(--blue);color:var(--blue);font-weight:650}
+    .baseline-comparisons{margin:20px 0 26px}
+    #evaluation > .evaluation-block:first-of-type{margin-top:0;padding-top:0;border-top:0}
+    .evaluation-method{margin:0;color:var(--muted);font-size:14px;line-height:1.7}
+    .creator-study-summary,.audience-study-summary{display:grid;grid-template-columns:1fr 2.2fr 2fr;align-items:center;gap:0}
+    .audience-study-summary{grid-template-columns:1fr 4.2fr}
+    :is(.creator-study-summary,.audience-study-summary) > span{min-width:0;padding:0 20px}
+    :is(.creator-study-summary,.audience-study-summary) > span:first-child{padding-left:0}
+    :is(.creator-study-summary,.audience-study-summary) > span + span{border-left:1px solid #b8c0cb}
+    @media(max-width:640px){.creator-study-summary,.audience-study-summary{grid-template-columns:1fr;gap:10px}:is(.creator-study-summary,.audience-study-summary) > span{padding:0}:is(.creator-study-summary,.audience-study-summary) > span + span{border-left:0}}
+    .evaluation-block{margin-top:36px;padding-top:28px;border-top:1px solid var(--line)}
+    .evaluation h3{margin:0 0 12px;color:var(--tag);font-size:21px;line-height:1.4}
+    .evaluation h4{margin:0 0 10px;color:var(--blue);font-size:17px;line-height:1.45}
+    .evaluation h4.key-findings-title{margin-top:24px}
+    .evaluation h4.key-findings-title,#video-comparison > h4,.evaluation .comparison-row > h4{position:relative;padding-bottom:12px;margin-bottom:18px;border-bottom:1px solid var(--line)}
+    .evaluation h4.key-findings-title::after,#video-comparison > h4::after,.evaluation .comparison-row > h4::after{content:"";position:absolute;left:0;bottom:-1px;width:64px;height:3px;background:var(--blue)}
+    .evaluation-figure{margin:22px 0 0;min-width:0}
+    .evaluation-figure a{display:block;cursor:zoom-in}
+    .evaluation-figure img{display:block;width:100%;height:auto}
+    .evaluation-figure.audience-ratings-figure img{width:min(100%,1040px);height:auto;margin-inline:auto}
+    .evaluation-figure figcaption{margin-top:10px;font-size:13px;line-height:1.6;color:var(--muted)}
+    .evaluation-findings{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:24px}
+    .evaluation-findings > section,.behavior-results > section{min-width:0}
+    .evaluation-points{margin:0;padding-left:20px;font-size:15px;line-height:1.7}
+    .evaluation-points li + li{margin-top:10px}
+    .evaluation-points li::marker{color:var(--blue)}
+    .behavior-results{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:36px;margin-top:22px}
+    .behavior-results .evaluation-figure{margin:0 0 20px}
+    .behavior-chart{display:flex;align-items:center;aspect-ratio:1.72}
+    .behavior-chart a{width:100%}
+    .evaluation-caveat{margin:24px 0 0;padding:14px 0 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px;line-height:1.7}
+    .comparison-legend{display:flex;flex-wrap:wrap;gap:22px;margin:18px 0;color:var(--muted);font-size:13px}
+    .comparison-legend span{border-bottom:3px solid var(--blue);padding-bottom:4px}
+    .comparison-legend span:nth-child(2){border-color:#35818a}
+    .comparison-legend span:nth-child(3){border-color:var(--tag)}
+    .comparison-row{margin-top:28px}
+    .comparison-status{display:flex;flex-wrap:wrap;gap:8px 28px;list-style:none;margin:0 0 18px;padding:0;font-size:15px;line-height:1.5;font-weight:600}
+    .comparison-status li{display:flex;align-items:baseline;gap:7px;min-width:0}
+    .comparison-status .status-fail{color:#b42332}
+    .comparison-status .status-pass{color:#237344}
+    .comparison-status .status-symbol{flex:none;font-size:18px;font-weight:700}
+    .comparison-scroll{overflow-x:auto;overscroll-behavior-x:contain}
+    .comparison-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:10px;min-width:980px}
+    .comparison-clip{display:flex;flex-direction:column;min-width:0;margin:0;--stage-color:var(--blue);--stage-fill:#eef3fa}
+    .comparison-clip.stage-display{--stage-color:#35818a;--stage-fill:#edf7f7}
+    .comparison-clip.stage-cta{--stage-color:var(--tag);--stage-fill:#fcf0f2}
+    .comparison-time{display:flex;justify-content:space-between;gap:4px;margin-bottom:6px;font-size:12px;font-variant-numeric:tabular-nums;color:var(--muted)}
+    .comparison-time span{color:var(--stage-color);font-weight:650}
+    .comparison-media{position:relative;display:block;width:100%;aspect-ratio:9/16;margin:0;padding:0;border:0;border-radius:4px 4px 0 0;overflow:hidden;background:#edf0f3;cursor:pointer}
+    .comparison-video{display:block;width:100%;height:100%;object-fit:contain}
+    .comparison-media:hover .feature-play{background:var(--blue)}
+    .comparison-clip figcaption{flex:1;margin:0;padding:10px 8px;border-top:3px solid var(--stage-color);background:var(--stage-fill);font-size:14px;line-height:1.5;text-align:center}
+    .comparison-issue{display:block;margin-top:8px;color:var(--tag);font-size:12px;font-weight:750;line-height:1.4}
+    .comparison-notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;list-style:none;margin:16px 0 0;padding:0;font-size:14px;line-height:1.6}
+    .comparison-notes li{border-top:2px solid #dc9ca7;padding-top:8px}
+    .comparison-notes strong{display:block;margin-bottom:3px;color:var(--tag)}
+    .comparison-row:not(:first-of-type) .comparison-notes{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .comparison-row[data-condition="adstudio"] .comparison-notes li{border-color:#91bfc3}
+    .comparison-row[data-condition="adstudio"] .comparison-notes strong{color:#28717a}
+    .creator-behavior{margin-top:30px;padding-top:24px;border-top:1px solid var(--line)}
+    @media(max-width:640px){.comparison-notes,.comparison-row:not(:first-of-type) .comparison-notes{grid-template-columns:1fr;gap:12px}.comparison-grid{gap:8px}.comparison-legend{gap:16px}}
+    @media(max-width:900px){.evaluation-findings{grid-template-columns:1fr;gap:22px}.behavior-results{grid-template-columns:1fr;gap:30px}.behavior-chart{aspect-ratio:auto}.behavior-results > section:last-child .evaluation-figure{max-width:640px}.study-conditions{gap:18px}}
+    @media(max-width:640px){.study-conditions{grid-template-columns:1fr;gap:16px}.evaluation > h2{font-size:25px}.evaluation h3{font-size:19px}.evaluation-intro{font-size:16px}}
+    .key-features{margin-top:72px;color:#555d67}
+    .key-features > h2{position:relative;margin:0 0 28px;padding:0 0 15px;border-bottom:1px solid var(--line);color:var(--tag);font-size:28px;font-weight:750;line-height:1.3}
+    .key-features > h2::after{position:absolute;bottom:-1px;left:0;width:64px;height:3px;background:var(--tag);content:""}
+    .feature-section + .feature-section{margin-top:44px;padding-top:30px;border-top:1px solid var(--line)}
+    .overview-examples{margin-top:40px;color:#555d67}
+    .feature-section h3{margin:0 0 10px;color:var(--tag);font-size:21px;font-weight:750;line-height:1.4}
+    .feature-intro{margin:0 0 24px;font-size:16px;line-height:1.7}
+    .product-input-demo{display:block;width:100%;height:auto;aspect-ratio:1920/734;object-fit:contain;margin:0;border-radius:6px;background:#101820}
+    .retrieval-layout{display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);align-items:stretch;gap:32px;margin-top:24px}
+    .retrieval-media{display:flex;flex-direction:column;justify-content:space-between;min-width:0}
+    .rag-content{display:flex;flex-direction:column;justify-content:space-between;min-width:0}
+    .retrieval-media figure{margin:0}
+    .retrieval-media figure + figure{margin-top:22px}
+    .retrieval-media img,.retrieval-demo{display:block;width:100%;height:auto;border-radius:6px}
+    .retrieval-demo{aspect-ratio:1920/1562;object-fit:contain;background:#101820}
+    .strategy-layout{display:grid;grid-template-columns:minmax(0,0.85fr) minmax(0,1.15fr);align-items:start;gap:32px;margin-top:24px}
+    .version-summary{align-self:center}
+    .final-demo{display:block;width:300px;max-width:100%;height:auto;aspect-ratio:9/16;object-fit:contain;margin:20px auto 0;border-radius:6px;background:#101820}
+    .strategy-media{min-width:0;margin:0}
+    .strategy-demo{display:block;width:100%;height:auto;aspect-ratio:1920/1012;object-fit:contain;border-radius:6px;background:#101820}
+    .strategy-media figcaption{margin-top:8px;color:var(--muted);font-size:13px}
+    .strategy-steps{margin:0;padding-left:23px;color:#555d67;font-size:15px;line-height:1.65}
+    .strategy-steps > li{padding-left:3px}
+    .strategy-steps > li + li{margin-top:18px}
+    .strategy-steps > li::marker{color:var(--blue);font-weight:650}
+    .strategy-steps strong,.strategy-options dt{color:var(--blue);font-weight:750}
+    .strategy-options{margin:10px 0 0}
+    .strategy-options > div + div{margin-top:8px}
+    .strategy-options dt,.strategy-options dd{display:inline;margin:0}
+    .revision-demo{display:block;width:100%;height:auto;aspect-ratio:1920/1518;object-fit:contain;margin:0;border-radius:6px;background:#101820}
+    .segment-demo{display:block;width:100%;height:auto;aspect-ratio:1776/1444;object-fit:contain;margin:0;border-radius:6px;background:#101820}
+    .version-demo{display:block;width:100%;height:auto;aspect-ratio:1820/1796;object-fit:contain;margin:0;border-radius:6px;background:#101820}
+    .refinement-content{min-width:0;font-size:15px;line-height:1.65}
+    .refinement-content p{margin:0}
+    .refinement-content strong{color:var(--blue);font-weight:750}
+    .refinement-table{width:100%;margin:16px 0 22px;border-collapse:collapse;table-layout:fixed;font-size:14px;line-height:1.6;text-align:left}
+    .refinement-table th,.refinement-table td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:break-word}
+    .refinement-table thead th{background:#f5f7fa;border-top:2px solid var(--blue);color:var(--blue);font-weight:750}
+    .refinement-table th:first-child{width:33%}
+    .refinement-table tbody th{color:var(--blue);font-weight:650}
+    @media(max-width:640px){.refinement-table th:first-child{width:40%}.refinement-table th,.refinement-table td{padding:10px 8px}}
+    @media(max-width:640px){#segment-refinement .refinement-table th:first-child{width:45%}}
+    @media(max-width:900px){.strategy-layout{grid-template-columns:1fr;gap:24px}}
+    @media(max-width:640px){.final-demo{width:260px}}
+    .retrieval-media a{display:block;cursor:zoom-in}
+    .retrieval-media figcaption{margin-top:8px;color:var(--muted);font-size:13px}
+    .rag-details{margin:0;padding-left:20px;font-size:16px;line-height:1.7}
+    .rag-stage + .rag-stage{margin-top:26px}
+    .rag-stage-label{display:inline-block;margin:0 0 16px;padding:5px 10px;border-radius:4px;background:var(--line);color:var(--blue);font-size:15px;font-weight:750;line-height:1.5}
+    .rag-details li{padding-left:3px}
+    .rag-details li + li{margin-top:22px}
+    .rag-details li::marker{color:var(--blue)}
+    .rag-details strong{color:var(--blue);font-weight:750}
+    .rag-details .key-number{color:var(--tag);font-size:18px;font-weight:800}
+    .rag-details .source-detail{display:block;margin-top:5px;color:var(--muted);font-size:13px}
+    .codebook-steps{margin:10px 0 0;padding-left:23px;font-size:15px;line-height:1.65}
+    .rag-details .codebook-steps li + li{margin-top:8px}
+    .ad-analysis-table{width:100%;margin:14px 0 10px;border-collapse:collapse;table-layout:fixed;font-size:14px;line-height:1.6;text-align:left}
+    .ad-analysis-table th,.ad-analysis-table td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top;overflow-wrap:break-word}
+    .ad-analysis-table thead th{background:#f5f7fa;border-top:2px solid var(--blue);color:var(--blue);font-weight:750}
+    .ad-analysis-table th:first-child{width:31%}
+    .ad-analysis-table tbody th{color:var(--blue);font-weight:650}
+    @media(max-width:900px){.retrieval-layout{grid-template-columns:1fr;gap:24px}.retrieval-media{display:grid;grid-template-columns:1fr;gap:18px;align-items:start}.retrieval-media figure + figure{margin-top:0}.rag-details li + li{margin-top:16px}}
+    @media(max-width:640px){.retrieval-media{grid-template-columns:1fr}.rag-details{font-size:15px}.ad-analysis-table th:first-child{width:36%}.ad-analysis-table th,.ad-analysis-table td{padding:10px 8px}}
+    .format-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:22px}
+    #ad-script{--script-label-width:110px}
+    .script-content{min-width:700px}
+    .ad-timeline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));list-style:none;margin:0 0 30px var(--script-label-width);padding:0;text-align:center}
+    .ad-timeline li{min-width:0;border-top:6px solid var(--blue);padding:16px 20px 0}
+    .ad-timeline li:nth-child(2){border-color:#35818a}
+    .ad-timeline li:nth-child(3){border-color:var(--tag)}
+    .ad-timeline h4{margin:0 0 8px;color:var(--blue);font-size:16px;line-height:1.5}
+    .ad-timeline p{margin:0;font-size:15px;line-height:1.65}
+    .ad-timeline li:nth-child(2) h4,.structure-grid thead th:nth-child(3) .script-stage{color:#35818a}
+    .ad-timeline li:nth-child(3) h4,.structure-grid thead th:nth-child(4) .script-stage{color:var(--tag)}
+    .structure-grid thead th:nth-child(3){border-top-color:#35818a}
+    .structure-grid thead th:nth-child(4){border-top-color:var(--tag)}
+    @media(max-width:640px){#ad-script{--script-label-width:85px}.ad-timeline li{padding:14px 12px 0}}
+    .script-table-scroll{overflow-x:auto;overscroll-behavior-x:contain}
+    .structure-grid{width:100%;min-width:700px;border-collapse:collapse;table-layout:fixed;font-size:14px;line-height:1.65;text-align:left}
+    .structure-grid .script-label-column{width:var(--script-label-width)}
+    .structure-grid th,.structure-grid td{padding:16px 20px;border-bottom:1px solid var(--line);vertical-align:top}
+    .structure-grid thead th{border-top:2px solid var(--blue);background:#f5f7fa;text-align:center;color:var(--blue)}
+    .structure-grid thead th:first-child,.structure-grid tbody th{text-align:left;color:var(--blue);font-weight:650}
+    .structure-grid tr > * + *{border-left:1px solid var(--line)}
+    .structure-grid .script-stage{display:block;font-size:16px;font-weight:750}
+    .structure-grid .script-copy{margin:0;font-size:15px;line-height:1.7}
+    .feature-example{min-width:0;margin:0;text-align:center}
+    .feature-media{position:relative;display:block;width:100%;max-width:190px;margin:0 auto;padding:0;border:0;border-radius:6px;background:#f5f7fa;cursor:pointer}
+    .feature-video{display:block;width:100%;aspect-ratio:9/16;object-fit:contain;border-radius:6px}
+    .feature-play{position:absolute;right:8px;bottom:8px;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;color:#fff;background:rgba(0,0,0,.65);pointer-events:none}
+    .feature-play svg{width:16px;height:16px}
+    .feature-media:hover .feature-play{background:var(--blue)}
+    .feature-example figcaption{margin-top:14px}
+    .feature-example h4{margin:0 0 6px;color:var(--blue);font-size:16px;font-weight:750;line-height:1.4}
+    .feature-example p{margin:0;font-size:14px;line-height:1.6}
+    .segment-time{display:block;margin:0 0 5px;color:var(--muted);font-size:13px;font-weight:500;font-variant-numeric:tabular-nums}
+    @media(max-width:900px){.format-grid{gap:14px}.feature-example h4{font-size:15px}.structure-grid th,.structure-grid td{padding:14px 12px}}
+    @media(max-width:640px){.key-features{margin-top:52px}.key-features > h2{font-size:24px}.feature-section h3{font-size:19px}.format-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}.feature-media{max-width:150px}.structure-grid .script-label-column{width:85px}.feature-section + .feature-section{margin-top:32px;padding-top:24px}}
+    @media(max-width:900px){.participant-groups{gap:16px}.participant-group + .participant-group{padding-left:16px}.challenge-goal-table tbody th,.challenge-goal-table tbody td{padding:20px 16px}}
+    @media(max-width:640px){#overview h2,.rationale > h2{font-size:24px}.overview-intro{font-size:16px;line-height:1.7}.workflow-figure figcaption{font-size:12px}.rationale{margin-top:52px}.rationale h3{font-size:19px}.study-intro{font-size:16px}.participant-group + .participant-group{padding-left:8px}.participant-group h4{font-size:12px;overflow-wrap:anywhere}.participant-groups{gap:8px;margin-top:18px}.participant-avatar{width:min(100%,80px);margin-bottom:8px}.study-findings{margin-top:36px}.challenge-goal-table colgroup{display:none}.challenge-goal-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.challenge-goal-table,.challenge-goal-table tbody,.challenge-goal-table tr,.challenge-goal-table tbody th,.challenge-goal-table tbody td{display:block;width:100%}.challenge-goal-table tbody tr{border-bottom:1px solid #cbd2dc}.challenge-goal-table tbody th{padding:20px 0 16px;border:0}.challenge-goal-table tbody td{padding:0 0 22px;border:0}.challenge-goal-table tbody td::before{display:block;content:'Design goals';margin:0 0 12px;color:var(--tag);font-size:13px;font-weight:750}.challenge-heading h4{font-size:17px}.goal-heading h4{font-size:16px}.practitioner-quote{font-size:14px}}
+    .video-showcase{margin:0 0 48px}
+    .video-rail{display:flex;gap:16px;overflow-x:auto;scrollbar-width:none;overscroll-behavior-x:contain;cursor:grab;touch-action:pan-x pan-y}
+    .video-rail::-webkit-scrollbar{display:none}
+    .video-rail.dragging{cursor:grabbing;user-select:none}
+    .video-item{flex:0 0 220px;min-width:0;margin:0}
+    .video-open{display:block;width:100%;padding:0;border:0;border-radius:6px;background:transparent;cursor:pointer}
+    .video-item video{display:block;width:100%;aspect-ratio:9/16;object-fit:contain;background:#f5f7fa;border-radius:6px}
+    .video-item figcaption{padding-top:10px;color:var(--muted);font-size:13px;line-height:1.5}
+    .video-item strong{display:block;color:var(--blue);font-size:14px;font-weight:650}
+    .video-controls{display:flex;justify-content:flex-end;gap:8px;margin-top:16px}
+    .video-controls button{display:grid;place-items:center;width:36px;height:36px;border:1px solid var(--line);border-radius:4px;background:#fff;color:var(--blue);cursor:pointer}
+    .video-controls button:hover{background:#f1f5fb}
+    .video-controls svg{width:18px;height:18px}
+    .video-viewer{width:min(460px,calc(100% - 32px));max-height:calc(100svh - 32px);padding:12px;border:0;border-radius:8px;background:#fff;color:var(--ink);overflow:auto}
+    .video-viewer::backdrop{background:rgba(0,0,0,.72)}
+    .viewer-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+    .viewer-header h2{margin:0;padding:0;border:0;font-size:16px;line-height:1.4;color:var(--blue)}
+    .viewer-close{display:grid;place-items:center;flex:0 0 36px;width:36px;height:36px;border:1px solid var(--line);border-radius:4px;background:#fff;color:var(--ink);cursor:pointer}
+    .viewer-close svg{width:20px;height:20px}
+    .viewer-video{display:block;width:100%;height:min(76svh,720px);object-fit:contain;background:#111;border-radius:4px}
+    .viewer-error{margin:10px 0 0;color:var(--tag);font-size:14px}
+    body.viewer-open{overflow:hidden}
+    button:focus-visible,.video-rail:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+    @media(max-width:1000px){.paper-name{font-size:60px}.paper-subtitle{font-size:32px}.authors{font-size:18px}}
+    @media(max-width:640px){.paper-hero{margin:22px auto 32px}.paper-name{font-size:48px}.paper-subtitle{font-size:26px}.authors{font-size:16.8px}.video-item{flex-basis:180px}.video-rail{gap:12px}}
+    .page-contents[hidden],.toc-open-button[hidden],.toc-backdrop[hidden]{display:none}
+    body.toc-expanded{padding-left:280px}
+    .page-contents{position:fixed;inset:0 auto 0 0;z-index:30;display:flex;flex-direction:column;width:280px;background:#fff;border-right:1px solid var(--line)}
+    .toc-header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-shrink:0;padding:18px 16px 14px 20px}
+    .toc-title{color:var(--ink);font-size:17px;font-weight:750;text-decoration:none}
+    .toc-open-button,.toc-close-button{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;flex-shrink:0;padding:0;border:0;border-radius:4px;background:#fff;color:var(--muted);cursor:pointer}
+    .toc-open-button{position:fixed;z-index:25;top:14px;left:12px;border:1px solid var(--line)}
+    .toc-open-button:hover,.toc-close-button:hover{background:#f5f7fa;color:var(--blue)}
+    .toc-open-button:focus-visible,.toc-close-button:focus-visible,.page-contents a:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+    .toc-nav{min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;padding:0 12px 24px}
+    .toc-nav ul{margin:0;padding:0;list-style:none}
+    .toc-nav .toc-group{margin-top:16px}
+    .toc-nav a{display:block;padding:7px 10px;border-left:2px solid transparent;border-radius:0 4px 4px 0;color:var(--muted);font-size:14px;line-height:1.45;text-decoration:none;overflow-wrap:anywhere}
+    .toc-nav .toc-part{color:#444b55;font-weight:700}
+    .toc-nav .toc-group ul a{padding-left:22px}
+    .toc-nav a:hover{color:var(--blue);background:#f5f7fa}
+    .toc-nav a[aria-current="location"]{color:var(--blue);background:#edf3fc;border-left-color:var(--blue);font-weight:700}
+    .toc-group.is-current > .toc-part{color:var(--blue)}
+    .toc-target{scroll-margin-top:28px}
+    body.toc-ready:not(.toc-expanded) .top{padding-left:44px}
+    @media(max-width:1279px){body.toc-ready{padding-top:52px}body.toc-expanded{padding-left:0}body.toc-modal{overflow:hidden}body.toc-ready::before{content:"";position:fixed;z-index:20;inset:0 0 auto;height:52px;background:#fff;border-bottom:1px solid var(--line)}.toc-open-button{top:8px}.page-contents{width:min(320px,calc(100% - 48px))}.toc-backdrop{position:fixed;inset:0;z-index:29;background:rgba(24,30,40,.28)}.toc-target{scroll-margin-top:76px}body.toc-ready:not(.toc-expanded) .top{padding-left:0}}
+    @media print{.page-contents,.toc-open-button,.toc-backdrop{display:none!important}body.toc-ready,body.toc-expanded{padding:0}body.toc-ready::before{display:none}}
+  </style>
+</head>
+<body>
+  <button class="toc-open-button" type="button" aria-label="Open contents" title="Open contents" aria-controls="page-contents" aria-expanded="false" hidden><i data-lucide="panel-left-open" aria-hidden="true"></i></button>
+  <div class="toc-backdrop" hidden></div>
+  <aside class="page-contents" id="page-contents" aria-label="Page contents" hidden>
+    <div class="toc-header">
+      <a class="toc-title" href="#paper-overview">AdStudio</a>
+      <button class="toc-close-button" type="button" aria-label="Close contents" title="Close contents" aria-controls="page-contents"><i data-lucide="panel-left-close" aria-hidden="true"></i></button>
+    </div>
+    <nav class="toc-nav" aria-label="AdStudio sections"></nav>
+  </aside>
+  <header class="top"><nav class="nav"><a href="../index.html#publications">← Back to Homepage</a></nav></header>
+  <main>
+    <header class="paper-hero" id="paper-overview">
+      <p class="venue">ACM CHI &middot; 2027</p>
+      <h1 class="paper-title"><span class="paper-name">AdStudio</span><span class="paper-subtitle">A Strategy-Guided System for Controllable Human-AI Co-Creation of Short Video Ads</span></h1>
+      <p class="authors">Li, X., <strong>Zhang, R.</strong>, Sun, M., Zhang, S., Zhu, H., and Li, X.</p>
+      <p class="review-status">Under review at ACM CHI 2027</p>
+      <div class="actions"><a class="button" href="https://ad-video-api-y5mfnuqs6a-uc.a.run.app/" target="_blank" rel="noopener noreferrer">Try AdStudio</a></div>
+    </header>
+    <section class="video-showcase" aria-label="AdStudio generated video examples">
+      <div class="video-rail" tabindex="0" aria-label="Video examples, horizontally scrollable"></div>
+      <div class="video-controls">
+        <button type="button" data-direction="-1" aria-label="Previous videos" title="Previous videos"><i data-lucide="chevron-left"></i></button>
+        <button type="button" class="scroll-toggle" aria-label="Pause scrolling" title="Pause scrolling" aria-pressed="false"><i data-lucide="pause"></i></button>
+        <button type="button" data-direction="1" aria-label="Next videos" title="Next videos"><i data-lucide="chevron-right"></i></button>
+      </div>
+    </section>
+    <section id="overview" aria-labelledby="overview-title">
+      <h2 id="overview-title">1. What is AdStudio?</h2>
+      <p class="overview-intro">We present <strong>AdStudio</strong>, a strategy-guided human&ndash;AI co-creation system for controllable short-video advertising. Its end-to-end workflow guides creators through <strong class="workflow-chain">&ldquo;product input &rarr; product analysis &rarr; retrieval of high-performing videos &rarr; strategy generation and selection &rarr; generation and iterative refinement of reference images, scripts, and video segments &rarr; final video assembly.&rdquo;</strong></p>
+      <figure class="workflow-figure">
+        <a href="../assets/adstudio-workflow.png" target="_blank" rel="noopener" aria-label="Open the AdStudio workflow figure at full size">
+          <img src="../assets/adstudio-workflow.png" width="2578" height="954" alt="AdStudio workflow: product input, product briefing and strategy selection organized around Hook, Display and CTA; iterative script and reference-image planning; video segment revision and final video assembly.">
+        </a>
+        <figcaption>Fig. 1. Overview of AdStudio&rsquo;s strategy-driven workflow for generating short video ads. Given product information and ad type, AdStudio analyzes the input and retrieves similar high-performing videos, recommends advertising strategies organized around the Hook&ndash;Display&ndash;Call-to-Action (CTA) structure, generates scripts and reference images, supports feedback-driven video segment revision, and integrates accepted segments into a final video.</figcaption>
+      </figure>
+      <section class="feature-section overview-examples" aria-labelledby="formats-title">
+        <h3 id="formats-title">1.1 Five Ad Formats</h3>
+        <p class="feature-intro">Through this workflow, AdStudio produces finished short-video ads in five formats. The examples below show how the same product can be presented in each format.</p>
+        <div class="format-grid">
+          <figure class="feature-example">
+            <button class="feature-media" type="button" data-clip="serum-stick-talking-head" data-title="Direct Showcase" aria-label="Play Direct Showcase example" title="Play Direct Showcase example">
+              <video class="feature-video" src="../assets/adstudio-clips/serum-stick-talking-head.mp4" poster="../assets/adstudio-clips/serum-stick-talking-head.jpg" muted loop playsinline preload="none"></video>
+              <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+            </button>
+            <figcaption><h4>Direct Showcase</h4><p>A presenter explains the product and its key benefits.</p></figcaption>
+          </figure>
+          <figure class="feature-example">
+            <button class="feature-media" type="button" data-clip="serum-stick-educational" data-title="Educational Explainer" aria-label="Play Educational Explainer example" title="Play Educational Explainer example">
+              <video class="feature-video" src="../assets/adstudio-clips/serum-stick-educational.mp4" poster="../assets/adstudio-clips/serum-stick-educational.jpg" muted loop playsinline preload="none"></video>
+              <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+            </button>
+            <figcaption><h4>Educational Explainer</h4><p>Explains how the product or its ingredients work.</p></figcaption>
+          </figure>
+          <figure class="feature-example">
+            <button class="feature-media" type="button" data-clip="serum-stick-story" data-title="Narrative Skit" aria-label="Play Narrative Skit example" title="Play Narrative Skit example">
+              <video class="feature-video" src="../assets/adstudio-clips/serum-stick-story.mp4" poster="../assets/adstudio-clips/serum-stick-story.jpg" muted loop playsinline preload="none"></video>
+              <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+            </button>
+            <figcaption><h4>Narrative Skit</h4><p>Introduces the product through a short story or scenario.</p></figcaption>
+          </figure>
+          <figure class="feature-example">
+            <button class="feature-media" type="button" data-clip="serum-stick-interview" data-title="Interview" aria-label="Play Interview example" title="Play Interview example">
+              <video class="feature-video" src="../assets/adstudio-clips/serum-stick-interview.mp4" poster="../assets/adstudio-clips/serum-stick-interview.jpg" muted loop playsinline preload="none"></video>
+              <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+            </button>
+            <figcaption><h4>Interview</h4><p>Presents the product through questions and personal experiences.</p></figcaption>
+          </figure>
+          <figure class="feature-example">
+            <button class="feature-media" type="button" data-clip="serum-stick-product" data-title="Product-only Cinematic" aria-label="Play Product-only Cinematic example" title="Play Product-only Cinematic example">
+              <video class="feature-video" src="../assets/adstudio-clips/serum-stick-product.mp4" poster="../assets/adstudio-clips/serum-stick-product.jpg" muted loop playsinline preload="none"></video>
+              <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+            </button>
+            <figcaption><h4>Product-only Cinematic</h4><p>Showcases the product through cinematic shots, without a presenter.</p></figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="feature-section" id="ad-script" aria-labelledby="structure-title">
+        <h3 id="structure-title">1.2 Hook&ndash;Display&ndash;CTA Structure</h3>
+        <p class="feature-intro">Across all five formats, each ad follows the same three-part structure: Hook, Display, and CTA. This aligns with <a href="https://ads.tiktok.com/business/en-US/creative-codes" target="_blank" rel="noopener noreferrer">TikTok&rsquo;s recommended hook&ndash;body&ndash;close framework</a> and the familiar advertising pattern of attracting attention, presenting product value, and prompting action.</p>
+        <div class="script-table-scroll" role="region" tabindex="0" aria-label="Hook, Display, and CTA timeline and video script">
+          <div class="script-content">
+        <ol class="ad-timeline" aria-label="Three stages of a short-video ad">
+          <li>
+            <h4>Hook &middot; first 8 seconds</h4>
+            <p>Capture attention with a pain point, curiosity, or a product promise.</p>
+          </li>
+          <li>
+            <h4>Display &middot; middle 8 seconds</h4>
+            <p>Show the product in action and demonstrate its key benefits.</p>
+          </li>
+          <li>
+            <h4>CTA &middot; final 8 seconds</h4>
+            <p>Encourage action with a recommendation, offer, or purchase cue.</p>
+          </li>
+        </ol>
+          <table class="structure-grid" aria-labelledby="structure-title">
+            <colgroup><col class="script-label-column"><col><col><col></colgroup>
+            <thead>
+              <tr>
+                <th scope="col">Time / Stage</th>
+                <th scope="col"><span class="segment-time">00:00&ndash;00:08</span><span class="script-stage">Hook</span></th>
+                <th scope="col"><span class="segment-time">00:08&ndash;00:16</span><span class="script-stage">Display</span></th>
+                <th scope="col"><span class="segment-time">00:16&ndash;00:24</span><span class="script-stage">CTA (Call to Action)</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Video</th>
+                <td><figure class="feature-example">
+            <button class="feature-media" type="button" data-clip="serum-stick-hook" data-title="Hook (0-8 s)" aria-label="Play 8-second Hook segment" title="Play Hook segment">
+              <video class="feature-video" src="../assets/adstudio-clips/serum-stick-hook.mp4" poster="../assets/adstudio-clips/serum-stick-hook.jpg" muted loop playsinline preload="none"></video>
+              <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+            </button>
+                </figure></td>
+                <td><figure class="feature-example">
+            <button class="feature-media" type="button" data-clip="serum-stick-display" data-title="Display (8-16 s)" aria-label="Play 8-second Display segment" title="Play Display segment">
+              <video class="feature-video" src="../assets/adstudio-clips/serum-stick-display.mp4" poster="../assets/adstudio-clips/serum-stick-display.jpg" muted loop playsinline preload="none"></video>
+              <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+            </button>
+                </figure></td>
+                <td><figure class="feature-example">
+            <button class="feature-media" type="button" data-clip="serum-stick-cta" data-title="CTA (16-24 s)" aria-label="Play 8-second CTA segment" title="Play CTA segment">
+              <video class="feature-video" src="../assets/adstudio-clips/serum-stick-cta.mp4" poster="../assets/adstudio-clips/serum-stick-cta.jpg" muted loop playsinline preload="none"></video>
+              <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+            </button>
+                </figure></td>
+              </tr>
+              <tr>
+                <th scope="row">Voiceover</th>
+                <td><p class="script-copy">&ldquo;Tired of dull skin and fine lines? This balm is my secret for a youthful, radiant glow.&rdquo;</p></td>
+                <td><p class="script-copy">&ldquo;Watch this balm glide effortlessly. With Volufiline for volume and PDRN for bounce, it instantly smooths lines and boosts radiance.&rdquo;</p></td>
+                <td><p class="script-copy">&ldquo;Get your visibly plumper, youthful glow. This multi-balm is your ultimate on-the-go solution.&rdquo;</p></td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+        </div>
+      </section>
+    </section>
+    <section class="rationale" id="why-adstudio" aria-labelledby="rationale-title">
+      <h2 id="rationale-title">2. Why We Developed AdStudio</h2>
+      <h3 id="ai-advertising-title">2.1 The Rise of AI-Generated Short-Video Ads</h3>
+      <ul class="motivation-context">
+        <li><strong>Growing demand.</strong> Short-video ads are increasingly important in e-commerce, driving demand for scalable production.</li>
+        <li><strong>Lower production barriers.</strong> GenAI supports efficient, low-cost ideation, scripting, and image and video generation.</li>
+      </ul>
+      <section class="formative-study" aria-labelledby="formative-title">
+        <h3 id="formative-title">2.2 Learning from Six Industry Practitioners</h3>
+        <p class="study-intro">To identify challenges in current AI-assisted short-video ad creation, we interviewed <strong>6</strong> industry practitioners, including an AI video advertising company lead, independent e-commerce video creators, and an overseas beauty brand executive. Each session lasted approximately <strong>60 minutes</strong> and included a <strong>30-minute</strong> think-aloud ad-generation task using participants&rsquo; regular tools.</p>
+        <div class="participant-groups">
+          <section class="participant-group" aria-labelledby="production-group">
+            <div class="participant-avatar ai" aria-hidden="true"></div>
+            <h4 id="production-group">AI Video Advertising Company Leaders</h4>
+          </section>
+          <section class="participant-group" aria-labelledby="marketing-group">
+            <div class="participant-avatar content" aria-hidden="true"></div>
+            <h4 id="marketing-group">Independent E-commerce Video Creators</h4>
+          </section>
+          <section class="participant-group" aria-labelledby="leadership-group">
+            <div class="participant-avatar brand" aria-hidden="true"></div>
+            <h4 id="leadership-group">Overseas Beauty Brand Executives</h4>
+          </section>
+        </div>
+      </section>
+      <section class="study-findings" aria-labelledby="challenges-title">
+        <h3 id="challenges-title">2.3 Challenges and Design Goals</h3>
+        <table class="challenge-goal-table" aria-labelledby="challenges-title">
+          <colgroup><col><col></colgroup>
+          <thead><tr><th scope="col">Challenges &amp; Practitioner Quotes</th><th scope="col">Corresponding Design Goals</th></tr></thead>
+          <tbody>
+            <tr>
+              <th scope="row">
+                <div class="challenge-heading"><span class="challenge-number">C1</span><h4>Fragmented tools disrupt workflow continuity</h4></div>
+                <blockquote class="practitioner-quote"><p>&ldquo;the information between tools is not connected.&rdquo;</p><cite>P1</cite></blockquote>
+                <blockquote class="practitioner-quote"><p>&ldquo;At first, I know what I want to say about the product, but after switching between tools, the final video may just look nice and lose the actual selling point.&rdquo;</p><cite>P4</cite></blockquote>
+              </th>
+              <td>
+                <div class="goal-match"><div class="goal-heading"><span class="goal-number">DG1</span><h4>Connect all stages of ad creation</h4></div><p>Create the ad in one connected workflow, from product analysis to the final video, without repeatedly copying information between tools.</p></div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <div class="challenge-heading"><span class="challenge-number">C2</span><h4>Finding and adapting ad strategies to a new product is hard</h4></div>
+                <blockquote class="practitioner-quote"><p>&ldquo;Even for the same skincare product, I cannot sell it in the same way to everyone. For beginners, I explain what it does; for ingredient-focused users, I talk about the formula; for price-sensitive users, I emphasize the discount.&rdquo;</p><cite>P6</cite></blockquote>
+                <blockquote class="practitioner-quote"><p>&ldquo;I have to manually train my feed so the platform recommends relevant videos, then copy their scripts into an LLM to find common patterns. If I switch to another product category, I basically have to start over.&rdquo;</p><cite>P3</cite></blockquote>
+              </th>
+              <td>
+                <div class="goal-match"><div class="goal-heading"><span class="goal-number">DG2</span><h4>Help creators find strategies that fit their products</h4></div><p>Use relevant high-performing ads as references to develop, compare, and choose strategies suited to the target product.</p></div>
+                <div class="goal-match"><div class="goal-heading"><span class="goal-number">DG3</span><h4>Carry the selected strategy through every stage</h4></div><p>Use the chosen strategy to guide scripts, reference images, and video segments, keeping the final ad aligned with the creator&rsquo;s intent.</p><p class="cross-cutting">Cross-cutting goal: addresses both C1 and C2.</p></div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">
+                <div class="challenge-heading"><span class="challenge-number">C3</span><h4>Revising content and managing versions is hard</h4></div>
+                <blockquote class="practitioner-quote"><p>&ldquo;Sometimes I am already satisfied with the character and scene and only want to change the lines, but in the next step the character changes. It is hard to keep things fixed.&rdquo;</p><cite>P2</cite></blockquote>
+                <blockquote class="practitioner-quote"><p>&ldquo;When generating in batches, I have to use file names, screenshots, or chat records to remember which version has a good opening or product display, and it is easy to lose track later.&rdquo;</p><cite>P3</cite></blockquote>
+              </th>
+              <td>
+                <div class="goal-match"><div class="goal-heading"><span class="goal-number">DG4</span><h4>Improve specific parts while keeping what works</h4></div><p>Support revisions through natural-language feedback, preserve previous versions, and let creators compare versions and restore earlier ones.</p></div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </section>
+    <section class="key-features" id="key-features" aria-labelledby="features-title">
+      <h2 id="features-title">3. How AdStudio Works</h2>
+      <section class="feature-section" id="product-input" aria-labelledby="input-title">
+        <h3 id="input-title">3.1 Product Input &amp; Ad Format Selection</h3>
+        <div class="strategy-layout">
+          <video class="product-input-demo" src="../assets/adstudio-product-input.mp4" poster="../assets/adstudio-product-input.jpg" width="1920" height="734" controls muted loop playsinline preload="metadata" aria-label="AdStudio product input and ad format selection demonstration"></video>
+          <ul class="strategy-steps">
+            <li><strong>Upload a product image.</strong> Provide a clear image of the product.</li>
+            <li><strong>Describe the product.</strong> Enter its key features and benefits.</li>
+            <li><strong>Choose an ad format.</strong> Select how the product will be presented.</li>
+          </ul>
+        </div>
+      </section>
+      <section class="feature-section" id="product-analysis" aria-labelledby="analysis-title">
+        <h3 id="analysis-title">3.2 Product Analysis and Relevant Ad Retrieval</h3>
+        <div class="retrieval-layout">
+          <div class="retrieval-media">
+            <figure>
+              <a href="../assets/adstudio-product-analysis-panel.png" target="_blank" rel="noopener" aria-label="Open the product analysis interface at full size"><img src="../assets/adstudio-product-analysis-panel.png" width="2300" height="1091" loading="lazy" alt="AdStudio product analysis summarizing category, pain points, selling points, use scenarios, target users, and brand tone."></a>
+              <figcaption>Product analysis</figcaption>
+            </figure>
+            <figure>
+              <video class="retrieval-demo" src="../assets/adstudio-product-analysis.mp4" poster="../assets/adstudio-product-analysis.jpg" width="1920" height="1562" controls muted loop playsinline preload="metadata" aria-label="Relevant ad retrieval demonstration"></video>
+              <figcaption>Relevant ads ranked by product similarity</figcaption>
+            </figure>
+          </div>
+          <div class="rag-content">
+          <section class="rag-stage" aria-labelledby="knowledge-base-label">
+          <h4 class="rag-stage-label" id="knowledge-base-label">Knowledge Base Construction</h4>
+          <ul class="rag-details">
+            <li><strong>Ad knowledge base.</strong> <strong class="key-number">3,930</strong> high-performing TikTok ads from English-speaking markets, posted during the <strong class="key-number">90</strong> days ending July 31, 2026.</li>
+            <li><strong>Ad analysis.</strong> We extract product attributes, advertising strategies, and visual features from transcripts and keyframes.
+              <table class="ad-analysis-table" aria-label="Ad information and analysis dimensions">
+                <thead><tr><th scope="col">Dimension</th><th scope="col">What We Analyze</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Basic information</th><td>Views, sales, source link</td></tr>
+                  <tr><th scope="row">Product attributes</th><td>Product category / subcategory, target audience, selling points, user pain points, usage scenarios, brand tone</td></tr>
+                  <tr><th scope="row">Ad strategies</th><td>Hook strategy, Display strategy, CTA strategy</td></tr>
+                  <tr><th scope="row">Visual features</th><td>Primary subject, scene and action, setting and lighting, framing and camera</td></tr>
+                </tbody>
+              </table>
+            </li>
+            <li><strong>Strategy Codebook Development</strong>
+              <ol class="codebook-steps">
+                <li><strong>Draft categories.</strong> Develop an initial codebook through ad observation and transcript analysis.</li>
+                <li><strong>LLM annotation.</strong> Segment 200 randomly sampled videos into Hook, Display, and CTA, and label each stage&rsquo;s strategy with a rationale and confidence score.</li>
+                <li><strong>Human review.</strong> 2 researchers review errors and uncertain cases to refine the codebook.</li>
+                <li><strong>Final taxonomy.</strong> Define 9 Hook, 8 Display, and 5 CTA strategy categories.</li>
+              </ol>
+            </li>
+          </ul>
+          </section>
+          <section class="rag-stage" aria-labelledby="similar-ads-label">
+          <h4 class="rag-stage-label" id="similar-ads-label">Similar Ad Retrieval</h4>
+          <ul class="rag-details">
+            <li><strong>RAG-based retrieval.</strong> We encode product attributes from both the ad knowledge base and the target product using the same embedding model, then retrieve the <strong class="key-number">top-20</strong> most similar ads based on cosine similarity. Creators can follow the source links to watch these videos.</li>
+          </ul>
+          </section>
+          </div>
+        </div>
+      </section>
+      <section class="feature-section" id="strategy-generation" aria-labelledby="strategy-title">
+        <h3 id="strategy-title">3.3 Strategy Generation and Recommendation</h3>
+        <div class="strategy-layout">
+          <figure class="strategy-media">
+            <video class="strategy-demo" src="../assets/adstudio-strategy-generation.mp4" poster="../assets/adstudio-strategy-generation.jpg" width="1920" height="1012" controls muted loop playsinline preload="metadata" aria-label="Three recommended strategy combinations and their recommendation reasons"></video>
+            <figcaption>Three strategy options, each with a Hook&ndash;Display&ndash;CTA combination and a recommendation rationale.</figcaption>
+          </figure>
+          <div>
+            <ul class="strategy-steps">
+              <li><strong>Generate strategy combinations.</strong> Combine product analysis with reference ads&rsquo; Hook&ndash;Display&ndash;CTA strategies and performance data to generate three product-specific options.</li>
+              <li><strong>Offer three directions.</strong>
+                <dl class="strategy-options">
+                  <div><dt>Balanced Strategy.</dt> <dd>Balances product fit and reference examples.</dd></div>
+                  <div><dt>High-View Strategy.</dt> <dd>Draws on high-view examples, with a focus on exposure.</dd></div>
+                  <div><dt>High-Sales Strategy.</dt> <dd>Draws on high-sales examples, with a focus on conversion.</dd></div>
+                </dl>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section class="feature-section" id="script-refinement" aria-labelledby="script-refinement-title">
+        <h3 id="script-refinement-title">3.4 Script and Reference Image Refinement</h3>
+        <div class="strategy-layout">
+          <video class="revision-demo" src="../assets/adstudio-script-revision-edited.mp4" poster="../assets/adstudio-script-revision-edited.jpg" width="1920" height="1518" controls muted loop playsinline preload="metadata" aria-label="Revising the script and reference images with natural-language feedback"></video>
+          <div class="refinement-content">
+            <ul class="strategy-steps">
+              <li>
+            <p><strong>Review the creative plan.</strong> View the following details alongside a six-frame storyboard.</p>
+            <table class="refinement-table" aria-label="Creative plan dimensions and meanings">
+              <thead><tr><th scope="col">Dimension</th><th scope="col">Meaning</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Title</th><td>The title of the planned ad.</td></tr>
+                <tr><th scope="row">Strategy</th><td>How the reference ad&rsquo;s strategy is adapted to the product.</td></tr>
+                <tr><th scope="row">Style</th><td>The visual style, tone, and video format.</td></tr>
+                <tr><th scope="row">Scene</th><td>The overall scenario and main activity.</td></tr>
+                <tr><th scope="row">Location</th><td>The setting and its visual details.</td></tr>
+                <tr><th scope="row">Character / Product Role</th><td>The featured person or product and their appearance.</td></tr>
+                <tr><th scope="row">Narrative</th><td>How the ad unfolds from Hook to Display to CTA.</td></tr>
+              </tbody>
+            </table>
+              </li>
+              <li>
+            <p><strong>Refine with natural-language feedback.</strong> Describe the changes you want to generate an updated storyboard and script.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section class="feature-section" id="segment-refinement" aria-labelledby="segment-refinement-title">
+        <h3 id="segment-refinement-title">3.5 Video Segment Generation and Refinement</h3>
+        <div class="strategy-layout">
+          <video class="segment-demo" src="../assets/adstudio-segment-refinement-matched.mp4" poster="../assets/adstudio-segment-refinement-matched.jpg" width="1776" height="1444" controls muted loop playsinline preload="metadata" aria-label="Before and after revising a generated video segment, with a three-second freeze highlighting the floating product in red"></video>
+          <div class="refinement-content">
+            <ul class="strategy-steps">
+              <li>
+                <p><strong>Review script details.</strong> Review the script for each video segment.</p>
+                <table class="refinement-table" aria-label="Video segment script details and meanings">
+                  <thead><tr><th scope="col">Detail</th><th scope="col">Meaning</th></tr></thead>
+                  <tbody>
+                    <tr><th scope="row">Segment Summary</th><td>The main content of the segment.</td></tr>
+                    <tr><th scope="row">Dialogue / Voiceover</th><td>What the presenter or narrator says.</td></tr>
+                    <tr><th scope="row">Action</th><td>What the character does or how the product is shown.</td></tr>
+                    <tr><th scope="row">Camera Motion</th><td>How the camera moves during the segment.</td></tr>
+                  </tbody>
+                </table>
+              </li>
+              <li><p><strong>Fix visual errors with feedback.</strong> In this example, the hair-removal device floats when the presenter raises her hand. With a simple request to keep the device in her right hand, AdStudio regenerates the clip without the floating error.</p></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section class="feature-section" id="version-control" aria-labelledby="version-control-title">
+        <h3 id="version-control-title">3.6 Version Control</h3>
+        <div class="strategy-layout">
+          <video class="version-demo" src="../assets/adstudio-version-control.mp4" poster="../assets/adstudio-version-control.jpg" width="1820" height="1796" controls muted loop playsinline preload="metadata" aria-label="Reviewing and switching between generated video segment versions"></video>
+          <ul class="strategy-steps version-summary">
+            <li><strong>Review version history.</strong> Browse all previously generated versions of each segment.</li>
+            <li><strong>Assemble preferred segments.</strong> Choose your preferred Hook, Display, and CTA segments and combine them into the final ad.</li>
+          </ul>
+        </div>
+      </section>
+      <section class="feature-section final-output" id="final-video" aria-labelledby="final-video-title">
+        <h3 id="final-video-title">3.7 Final Video</h3>
+        <video class="final-demo" src="../assets/adstudio-final-video.mp4" poster="../assets/adstudio-final-video.jpg" width="720" height="1280" controls muted loop playsinline preload="metadata" aria-label="Final short-video ad assembled from the selected Hook, Display, and CTA segments"></video>
+      </section>
+    </section>
+    <section class="evaluation" id="evaluation" aria-labelledby="evaluation-title">
+      <h2 id="evaluation-title">4. How Does AdStudio Perform?</h2>
+      <section class="evaluation-block" id="video-comparison" aria-labelledby="video-comparison-title">
+        <h3 id="video-comparison-title">4.1 Baseline Design</h3>
+        <div class="baseline-table-scroll" role="region" tabindex="0" aria-label="Comparison of Baseline 1, Baseline 2, and AdStudio">
+          <table class="baseline-table">
+            <colgroup><col class="baseline-input-col"><col class="baseline-strategy-col"><col class="baseline-adstudio-col"></colgroup>
+            <thead><tr><th scope="col">Baseline 1</th><th scope="col">Baseline 2</th><th scope="col">AdStudio</th></tr></thead>
+            <tbody><tr>
+              <td><ul>
+                <li>Product information and image input</li>
+              </ul></td>
+              <td><ul>
+                <li>Product information and image input</li>
+                <li>Product analysis</li>
+                <li>Retrieval of similar high-performing ads</li>
+                <li>Automatic use of a single Balanced Strategy</li>
+              </ul></td>
+              <td><ul>
+                <li>Product information and image input</li>
+                <li>Product analysis</li>
+                <li>Retrieval of similar high-performing ads</li>
+                <li>Three strategy options with creator selection</li>
+                <li class="baseline-feedback">Feedback on scripts, storyboards, and video segments</li>
+                <li>Version comparison and selection</li>
+                <li>Assembly of selected video segments</li>
+              </ul></td>
+            </tr></tbody>
+            <tfoot><tr><td>&rarr; Complete ad video</td><td>&rarr; Complete ad video</td><td>&rarr; Complete ad video</td></tr></tfoot>
+          </table>
+        </div>
+        <h4>Why These Two Baselines?</h4>
+        <ul class="evaluation-points baseline-comparisons">
+          <li><strong>Baseline 2 vs. Baseline 1</strong> &rarr; Tests how <strong>strategy support</strong> helps generate ads based on product analysis and relevant examples.</li>
+          <li><strong>AdStudio vs. Baseline 2</strong> &rarr; Tests how <strong>creator control</strong> helps refine ads through strategy selection, feedback, and version management.</li>
+        </ul>
+        <div class="comparison-legend" aria-label="Narrative stages"><span>Hook</span><span>Display</span><span>CTA</span></div>
+        <section class="comparison-row" data-condition="baseline-1" aria-labelledby="comparison-baseline-1-title">
+          <h4 id="comparison-baseline-1-title">Baseline 1</h4>
+          <ul class="comparison-status" aria-label="Baseline 1 example summary">
+            <li class="status-fail"><span class="status-symbol" aria-hidden="true">&#10007;</span>Incoherent script</li>
+            <li class="status-fail"><span class="status-symbol" aria-hidden="true">&#10007;</span>Inconsistent characters and scenes</li>
+            <li class="status-fail"><span class="status-symbol" aria-hidden="true">&#10007;</span>Character action errors</li>
+          </ul>
+          <div class="comparison-scroll" role="region" tabindex="0" aria-label="Baseline 1 video and voiceover sequence">
+            <div class="comparison-grid">
+              <figure class="comparison-clip stage-hook">
+                <div class="comparison-time">0&ndash;3.9 s<span>Hook</span></div>
+                <button class="comparison-media" type="button" data-clip="comparison-baseline-1-01-annotated" data-title="Baseline 1 &middot; 0&ndash;3.9 s" aria-label="Play Baseline 1 excerpt 1: My new favorite for glowing, plump skin." title="Play Baseline 1 excerpt 1">
+                  <video class="comparison-video" src="../assets/adstudio-clips/comparison-baseline-1-01-annotated-with-audio.mp4" poster="../assets/adstudio-clips/comparison-baseline-1-01-annotated.jpg" muted loop playsinline preload="none"></video>
+                  <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+                </button>
+                <figcaption>&ldquo;My new favorite for glowing, plump skin.&rdquo;</figcaption>
+              </figure>
+              <figure class="comparison-clip stage-display">
+                <div class="comparison-time">3.9&ndash;8 s<span>Display</span></div>
+                <button class="comparison-media" type="button" data-clip="comparison-baseline-1-02" data-title="Baseline 1 &middot; 3.9&ndash;8 s" aria-label="Play Baseline 1 excerpt 2: Watch this: a few sweeps on my cheeks." title="Play Baseline 1 excerpt 2">
+                  <video class="comparison-video" src="../assets/adstudio-clips/comparison-baseline-1-02-with-audio.mp4" poster="../assets/adstudio-clips/comparison-baseline-1-02.jpg" muted loop playsinline preload="none"></video>
+                  <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+                </button>
+                <figcaption>&ldquo;Watch this: a few sweeps on my cheeks.&rdquo;</figcaption>
+              </figure>
+              <figure class="comparison-clip stage-display">
+                <div class="comparison-time">8&ndash;10.76 s<span>Display</span></div>
+                <button class="comparison-media" type="button" data-clip="comparison-baseline-1-03-annotated" data-title="Baseline 1 &middot; 8&ndash;10.76 s" aria-label="Play Baseline 1 excerpt 3: Let me show you this Medicube balm." title="Play Baseline 1 excerpt 3">
+                  <video class="comparison-video" src="../assets/adstudio-clips/comparison-baseline-1-03-annotated-with-audio.mp4" poster="../assets/adstudio-clips/comparison-baseline-1-03-annotated.jpg" muted loop playsinline preload="none"></video>
+                  <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+                </button>
+                <figcaption>&ldquo;Let me show you this Medicube balm.&rdquo;</figcaption>
+              </figure>
+              <figure class="comparison-clip stage-display">
+                <div class="comparison-time">10.76&ndash;16 s<span>Display</span></div>
+                <button class="comparison-media" type="button" data-clip="comparison-baseline-1-04-annotated" data-title="Baseline 1 &middot; 10.76&ndash;16 s" aria-label="Play Baseline 1 excerpt 4: It glides on for an instant glow and helps with fine lines." title="Play Baseline 1 excerpt 4">
+                  <video class="comparison-video" src="../assets/adstudio-clips/comparison-baseline-1-04-annotated-with-audio.mp4" poster="../assets/adstudio-clips/comparison-baseline-1-04-annotated.jpg" muted loop playsinline preload="none"></video>
+                  <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+                </button>
+                <figcaption>&ldquo;It glides on for an instant glow and helps with fine lines.&rdquo;</figcaption>
+              </figure>
+              <figure class="comparison-clip stage-display">
+                <div class="comparison-time">16&ndash;18.68 s<span>Display</span></div>
+                <button class="comparison-media" type="button" data-clip="comparison-baseline-1-05-annotated" data-title="Baseline 1 &middot; 16&ndash;18.68 s" aria-label="Play Baseline 1 excerpt 5: I use it under my eyes," title="Play Baseline 1 excerpt 5">
+                  <video class="comparison-video" src="../assets/adstudio-clips/comparison-baseline-1-05-annotated-with-audio.mp4" poster="../assets/adstudio-clips/comparison-baseline-1-05-annotated.jpg" muted loop playsinline preload="none"></video>
+                  <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+                </button>
+                <figcaption>&ldquo;I use it under my eyes,&rdquo;</figcaption>
+              </figure>
+              <figure class="comparison-clip stage-display">
+                <div class="comparison-time">18.68&ndash;21.04 s<span>Display</span></div>
+                <button class="comparison-media" type="button" data-clip="comparison-baseline-1-06" data-title="Baseline 1 &middot; 18.68&ndash;21.04 s" aria-label="Play Baseline 1 excerpt 6: on my neck and smile lines." title="Play Baseline 1 excerpt 6">
+                  <video class="comparison-video" src="../assets/adstudio-clips/comparison-baseline-1-06-with-audio.mp4" poster="../assets/adstudio-clips/comparison-baseline-1-06.jpg" muted loop playsinline preload="none"></video>
+                  <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+                </button>
+                <figcaption>&ldquo;on my neck and smile lines.&rdquo;</figcaption>
+              </figure>
+              <figure class="comparison-clip stage-display">
+                <div class="comparison-time">21.04&ndash;24 s<span>Display</span></div>
+                <button class="comparison-media" type="button" data-clip="comparison-baseline-1-07-annotated" data-title="Baseline 1 &middot; 21.04&ndash;24 s" aria-label="Play Baseline 1 excerpt 7: It's got Volufiline, PDRN..." title="Play Baseline 1 excerpt 7">
+                  <video class="comparison-video" src="../assets/adstudio-clips/comparison-baseline-1-07-annotated-with-audio.mp4" poster="../assets/adstudio-clips/comparison-baseline-1-07-annotated.jpg" muted loop playsinline preload="none"></video>
+                  <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+                </button>
+                <figcaption>&ldquo;It's got Volufiline, PDRN...&rdquo;</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+        <section class="comparison-row" data-condition="baseline-2" aria-labelledby="comparison-baseline-2-title">
+          <h4 id="comparison-baseline-2-title">Baseline 2</h4>
+          <ul class="comparison-status" aria-label="Baseline 2 example summary">
+            <li class="status-pass"><span class="status-symbol" aria-hidden="true">&#10003;</span>Strategy incorporated</li>
+            <li class="status-pass"><span class="status-symbol" aria-hidden="true">&#10003;</span>Coherent script and consistent scenes</li>
+            <li class="status-fail"><span class="status-symbol" aria-hidden="true">&#10007;</span>Character action errors</li>
+            <li class="status-fail"><span class="status-symbol" aria-hidden="true">&#10007;</span>Scripts cannot be edited</li>
+          </ul>
+          <div class="comparison-scroll" role="region" tabindex="0" aria-label="Baseline 2 video and voiceover sequence">
+            <div class="comparison-grid">
+              <figure class="comparison-clip stage-hook">
+                <div class="comparison-time">0&ndash;4.1 s<span>Hook</span></div>
+                <button class="comparison-media" type="button" data-clip="comparison-baseline-2-01-annotated" data-title="Baseline 2 &middot; 0&ndash;4.1 s" aria-label="Play Baseline 2 excerpt 1: Fine lines lose volume first?" title="Play Baseline 2 excerpt 1">
+                  <video class="comparison-video" src="../assets/adstudio-clips/comparison-baseline-2-01-annotated-with-audio.mp4" poster="../assets/adstudio-clips/comparison-baseline-2-01-annotated.jpg" muted loop playsinline preload="none"></video>
+                  <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+                </button>
+                <figcaption>&ldquo;Fine lines lose volume first?&rdquo;</figcaption>
+              </figure>
+              <figure class="comparison-clip stage-hook">
+                <div class="comparison-time">4.1&ndash;8 s<span>Hook</span></div>
+                <button class="comparison-media" type="button" data-clip="comparison-baseline-2-02-annotated" data-title="Baseline 2 &middot; 4.1&ndash;8 s" aria-label="Play Baseline 2 excerpt 2: Delicate skin lacks structural density." title="Play Baseline 2 excerpt 2">
+                  <video class="comparison-video" src="../assets/adstudio-clips/comparison-baseline-2-02-annotated-with-audio.mp4" poster="../assets/adstudio-clips/comparison-baseline-2-02-annotated.jpg" muted loop playsinline preload="none"></video>
+                  <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+                </button>
+                <figcaption>&ldquo;Delicate skin lacks structural density.&rdquo;</figcaption>
+              </figure>
+              <figure class="comparison-clip stage-display">
+                <div class="comparison-time">8&ndash;11.22 s<span>Display</span></div>
+                <button class="comparison-media" type="button" data-clip="comparison-baseline-2-03" data-title="Baseline 2 &middot; 8&ndash;11.22 s" aria-label="Play Baseline 2 excerpt 3: Volufiline and PDRN boost volume" title="Play Baseline 2 excerpt 3">
+                  <video class="comparison-video" src="../assets/adstudio-clips/comparison-baseline-2-03-with-audio.mp4" poster="../assets/adstudio-clips/comparison-baseline-2-03.jpg" muted loop playsinline preload="none"></video>
+                  <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+                </button>
+                <figcaption>&ldquo;Volufiline and PDRN boost volume&rdquo;</figcaption>
+              </figure>
+              <figure class="comparison-clip stage-display">
+                <div class="comparison-time">11.22&ndash;14.31 s<span>Display</span></div>
+                <button class="comparison-media" type="button" data-clip="comparison-baseline-2-04" data-title="Baseline 2 &middot; 11.22&ndash;14.31 s" aria-label="Play Baseline 2 excerpt 4: and elasticity directly where you need it," title="Play Baseline 2 excerpt 4">
+                  <video class="comparison-video" src="../assets/adstudio-clips/comparison-baseline-2-04-with-audio.mp4" poster="../assets/adstudio-clips/comparison-baseline-2-04.jpg" muted loop playsinline preload="none"></video>
+                  <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+                </button>
+                <figcaption>&ldquo;and elasticity directly where you need it,&rdquo;</figcaption>
+              </figure>
+              <figure class="comparison-clip stage-display">
+                <div class="comparison-time">14.31&ndash;16 s<span>Display</span></div>
+                <button class="comparison-media" type="button" data-clip="comparison-baseline-2-05" data-title="Baseline 2 &middot; 14.31&ndash;16 s" aria-label="Play Baseline 2 excerpt 5: with zero mess." title="Play Baseline 2 excerpt 5">
+                  <video class="comparison-video" src="../assets/adstudio-clips/comparison-baseline-2-05-with-audio.mp4" poster="../assets/adstudio-clips/comparison-baseline-2-05.jpg" muted loop playsinline preload="none"></video>
+                  <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+                </button>
+                <figcaption>&ldquo;with zero mess.&rdquo;</figcaption>
+              </figure>
+              <figure class="comparison-clip stage-cta">
+                <div class="comparison-time">16&ndash;20.8 s<span>CTA</span></div>
+                <button class="comparison-media" type="button" data-clip="comparison-baseline-2-06" data-title="Baseline 2 &middot; 16&ndash;20.8 s" aria-label="Play Baseline 2 excerpt 6: Upgrade your daily line care with this all-in-one volume stick." title="Play Baseline 2 excerpt 6">
+                  <video class="comparison-video" src="../assets/adstudio-clips/comparison-baseline-2-06-with-audio.mp4" poster="../assets/adstudio-clips/comparison-baseline-2-06.jpg" muted loop playsinline preload="none"></video>
+                  <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+                </button>
+                <figcaption>&ldquo;Upgrade your daily line care with this all-in-one volume stick.&rdquo;</figcaption>
+              </figure>
+              <figure class="comparison-clip stage-cta">
+                <div class="comparison-time">20.8&ndash;24 s<span>CTA</span></div>
+                <button class="comparison-media" type="button" data-clip="comparison-baseline-2-07" data-title="Baseline 2 &middot; 20.8&ndash;24 s" aria-label="Play Baseline 2 excerpt 7: Tap below to grab yours." title="Play Baseline 2 excerpt 7">
+                  <video class="comparison-video" src="../assets/adstudio-clips/comparison-baseline-2-07-with-audio.mp4" poster="../assets/adstudio-clips/comparison-baseline-2-07.jpg" muted loop playsinline preload="none"></video>
+                  <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+                </button>
+                <figcaption>&ldquo;Tap below to grab yours.&rdquo;</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+        <section class="comparison-row" data-condition="adstudio" aria-labelledby="comparison-adstudio-title">
+          <h4 id="comparison-adstudio-title">AdStudio</h4>
+          <ul class="comparison-status" aria-label="AdStudio example summary">
+            <li class="status-pass"><span class="status-symbol" aria-hidden="true">&#10003;</span>Strategy incorporated</li>
+            <li class="status-pass"><span class="status-symbol" aria-hidden="true">&#10003;</span>Coherent script and consistent scenes</li>
+            <li class="status-pass"><span class="status-symbol" aria-hidden="true">&#10003;</span>Correct character actions</li>
+            <li class="status-pass"><span class="status-symbol" aria-hidden="true">&#10003;</span>Editable scripts</li>
+          </ul>
+          <div class="comparison-scroll" role="region" tabindex="0" aria-label="AdStudio video and voiceover sequence">
+            <div class="comparison-grid">
+              <figure class="comparison-clip stage-hook">
+                <div class="comparison-time">0&ndash;4.36 s<span>Hook</span></div>
+                <button class="comparison-media" type="button" data-clip="comparison-adstudio-01" data-title="AdStudio &middot; 0&ndash;4.36 s" aria-label="Play AdStudio excerpt 1: Treating wrinkles alone isn't enough for youthful skin." title="Play AdStudio excerpt 1">
+                  <video class="comparison-video" src="../assets/adstudio-clips/comparison-adstudio-01-with-audio.mp4" poster="../assets/adstudio-clips/comparison-adstudio-01.jpg" muted loop playsinline preload="none"></video>
+                  <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+                </button>
+                <figcaption>&ldquo;Treating wrinkles alone isn't enough for youthful skin.&rdquo;</figcaption>
+              </figure>
+              <figure class="comparison-clip stage-hook">
+                <div class="comparison-time">4.36&ndash;8 s<span>Hook</span></div>
+                <button class="comparison-media" type="button" data-clip="comparison-adstudio-02" data-title="AdStudio &middot; 4.36&ndash;8 s" aria-label="Play AdStudio excerpt 2: The real secret lies in restoring lost volume." title="Play AdStudio excerpt 2">
+                  <video class="comparison-video" src="../assets/adstudio-clips/comparison-adstudio-02-with-audio.mp4" poster="../assets/adstudio-clips/comparison-adstudio-02.jpg" muted loop playsinline preload="none"></video>
+                  <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+                </button>
+                <figcaption>&ldquo;The real secret lies in restoring lost volume.&rdquo;</figcaption>
+              </figure>
+              <figure class="comparison-clip stage-display">
+                <div class="comparison-time">8&ndash;10.5 s<span>Display</span></div>
+                <button class="comparison-media" type="button" data-clip="comparison-adstudio-03" data-title="AdStudio &middot; 8&ndash;10.5 s" aria-label="Play AdStudio excerpt 3: Volufiline visibly plumps hollow areas," title="Play AdStudio excerpt 3">
+                  <video class="comparison-video" src="../assets/adstudio-clips/comparison-adstudio-03-with-audio.mp4" poster="../assets/adstudio-clips/comparison-adstudio-03.jpg" muted loop playsinline preload="none"></video>
+                  <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+                </button>
+                <figcaption>&ldquo;Volufiline visibly plumps hollow areas,&rdquo;</figcaption>
+              </figure>
+              <figure class="comparison-clip stage-display">
+                <div class="comparison-time">10.5&ndash;13.77 s<span>Display</span></div>
+                <button class="comparison-media" type="button" data-clip="comparison-adstudio-04" data-title="AdStudio &middot; 10.5&ndash;13.77 s" aria-label="Play AdStudio excerpt 4: while PDRN and collagen boost elasticity." title="Play AdStudio excerpt 4">
+                  <video class="comparison-video" src="../assets/adstudio-clips/comparison-adstudio-04-with-audio.mp4" poster="../assets/adstudio-clips/comparison-adstudio-04.jpg" muted loop playsinline preload="none"></video>
+                  <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+                </button>
+                <figcaption>&ldquo;while PDRN and collagen boost elasticity.&rdquo;</figcaption>
+              </figure>
+              <figure class="comparison-clip stage-display">
+                <div class="comparison-time">13.77&ndash;16 s<span>Display</span></div>
+                <button class="comparison-media" type="button" data-clip="comparison-adstudio-05" data-title="AdStudio &middot; 13.77&ndash;16 s" aria-label="Play AdStudio excerpt 5: Get a firmer, radiant look." title="Play AdStudio excerpt 5">
+                  <video class="comparison-video" src="../assets/adstudio-clips/comparison-adstudio-05-with-audio.mp4" poster="../assets/adstudio-clips/comparison-adstudio-05.jpg" muted loop playsinline preload="none"></video>
+                  <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+                </button>
+                <figcaption>&ldquo;Get a firmer, radiant look.&rdquo;</figcaption>
+              </figure>
+              <figure class="comparison-clip stage-cta">
+                <div class="comparison-time">16&ndash;19.22 s<span>CTA</span></div>
+                <button class="comparison-media" type="button" data-clip="comparison-adstudio-06" data-title="AdStudio &middot; 16&ndash;19.22 s" aria-label="Play AdStudio excerpt 6: For an all-in-one volume and glow solution," title="Play AdStudio excerpt 6">
+                  <video class="comparison-video" src="../assets/adstudio-clips/comparison-adstudio-06-with-audio.mp4" poster="../assets/adstudio-clips/comparison-adstudio-06.jpg" muted loop playsinline preload="none"></video>
+                  <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+                </button>
+                <figcaption>&ldquo;For an all-in-one volume and glow solution,&rdquo;</figcaption>
+              </figure>
+              <figure class="comparison-clip stage-cta">
+                <div class="comparison-time">19.22&ndash;24 s<span>CTA</span></div>
+                <button class="comparison-media" type="button" data-clip="comparison-adstudio-07" data-title="AdStudio &middot; 19.22&ndash;24 s" aria-label="Play AdStudio excerpt 7: this multi-balm is your secret weapon. Get yours today." title="Play AdStudio excerpt 7">
+                  <video class="comparison-video" src="../assets/adstudio-clips/comparison-adstudio-07-with-audio.mp4" poster="../assets/adstudio-clips/comparison-adstudio-07.jpg" muted loop playsinline preload="none"></video>
+                  <span class="feature-play" aria-hidden="true"><i data-lucide="play"></i></span>
+                </button>
+                <figcaption>&ldquo;this multi-balm is your secret weapon. Get yours today.&rdquo;</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section class="evaluation-block" aria-labelledby="creator-results-title">
+        <h3 id="creator-results-title">4.2 Creator Experience</h3>
+        <p class="evaluation-method creator-study-summary"><span><strong class="study-number">12</strong> experienced creators</span><span><strong class="study-number">~75 min</strong> testing and questionnaires + <strong class="study-number">15-min</strong> interview</span><span>All three systems tested in counterbalanced order</span></p>
+        <figure class="evaluation-figure">
+          <a href="../assets/adstudio-creator-ratings.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size creator ratings chart"><img src="../assets/adstudio-creator-ratings.png" width="1569" height="530" loading="lazy" alt="Creator ratings for the three systems across task support, workload, strategy use, control, and output quality."></a>
+          <figcaption>Creator study (N = 12). Brackets mark significant pairwise differences after Holm correction. * p &lt; .05; ** p &lt; .01.</figcaption>
+        </figure>
+        <h4 class="key-findings-title">Key Findings</h4>
+        <ul class="evaluation-points creator-key-findings">
+          <li><strong>Overall stronger task and creativity support.</strong> AdStudio helps creators complete tasks and develop ideas, but requires more mental effort.</li>
+          <li><strong>Clearer strategy choices.</strong> Creators reviewed an average of <strong class="study-number">2.67</strong> strategy rationales, helping them better understand strategies and make informed choices.</li>
+          <li><strong>Targeted edits and version selection.</strong> Creators averaged <strong class="study-number">1.42</strong> generations for reference images and <strong class="study-number">1.64</strong> per video segment, and reported better support for targeted edits and greater control over the results.</li>
+        </ul>
+      </section>
+      <section class="evaluation-block" aria-labelledby="audience-results-title">
+        <h3 id="audience-results-title">4.3 Audience Feedback</h3>
+        <p class="evaluation-method audience-study-summary"><span><strong class="study-number">150</strong> audience participants</span><span><strong class="study-number">45</strong> videos across <strong class="study-number">3</strong> products and <strong class="study-number">5</strong> ad formats</span></p>
+        <figure class="evaluation-figure audience-ratings-figure">
+          <a href="../assets/adstudio-audience-ratings-detail.png" target="_blank" rel="noopener noreferrer" aria-label="Open full-size audience ratings chart"><img src="../assets/adstudio-audience-ratings-detail.png" width="1770" height="789" loading="lazy" alt="Audience ratings show higher message clarity, appeal, trust, behavioral intentions, and overall quality for AdStudio than both baselines."></a>
+          <figcaption>Audience study (N = 150). Brackets mark significant pairwise differences based on Tukey HSD tests. * p &lt; .05; ** p &lt; .01; *** p &lt; .001.</figcaption>
+        </figure>
+        <h4 class="key-findings-title">Key Findings</h4>
+        <ul class="evaluation-points audience-key-findings">
+          <li>Audiences found AdStudio videos clearer, more appealing, and more credible, and were more interested in learning about the product.</li>
+        </ul>
+      </section>
+    </section>
+  </main>
+  <dialog class="video-viewer" aria-labelledby="viewer-title">
+    <div class="viewer-header">
+      <h2 id="viewer-title"></h2>
+      <button class="viewer-close" type="button" aria-label="Close video" title="Close video" autofocus><i data-lucide="x"></i></button>
+    </div>
+    <video class="viewer-video" controls playsinline preload="none"></video>
+    <p class="viewer-error" role="status" hidden></p>
+  </dialog>
+  <script src="../assets/lucide.min.js"></script>
+  <script src="adstudio-contents.js"></script>
+  <script src="adstudio-gallery.js"></script>
+</body>
+</html>

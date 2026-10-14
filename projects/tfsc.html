@@ -1,0 +1,1140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Project page for Is more human-like better? The impact of virtual streamer language naturalness on user engagement.">
+  <title>Is more human-like better? | Ruoxi Zhang</title>
+  <style>
+    :root { --ink:#30343b; --muted:#68707b; --blue:#233f6e; --wine:#8f1930; --soft:#f5f7fa; --line:#e5e8ed; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:#4b4f52; background:#fff; font-family:'Helvetica Neue',Arial,sans-serif; font-size:16px; line-height:1.55; }
+    a { color:inherit; }
+    .page { width:min(1260px,calc(100% - 40px)); margin:0 auto; }
+    .topbar { display:flex; justify-content:space-between; align-items:center; padding:22px 0; font-size:.94rem; }
+    .back-link { color:var(--blue); text-decoration:none; font-weight:650; }
+    .back-link:hover { text-decoration:underline; }
+    .paper-tag { color:var(--muted); letter-spacing:.03em; }
+    .hero { max-width:1080px; margin:38px auto 52px; text-align:center; }
+    .eyebrow,.section-label { margin:0 0 14px; color:var(--wine); font-size:.85rem; font-weight:800; letter-spacing:.11em; text-transform:uppercase; }
+    h1 { max-width:1120px; margin:0 auto 28px; color:#3f4346; line-height:1.12; }
+    .title-main { display:block; font-size:clamp(3rem,6vw,5rem); font-weight:900; letter-spacing:-.05em; }
+    .title-sub { display:block; max-width:980px; margin:14px auto 0; font-size:clamp(1.75rem,3.2vw,2.75rem); font-weight:650; letter-spacing:-.025em; }
+    .authors { margin:0 0 8px; color:var(--blue); font-size:clamp(1.05rem,2vw,1.28rem); font-weight:620; }
+    .authors strong { font-weight:800; }
+    .affiliation { max-width:800px; margin:0 auto; color:var(--muted); }
+    .journal { margin:10px auto 22px; color:#4d535c; font-style:italic; }
+    .actions { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-top:24px; }
+    .button { display:inline-flex; align-items:center; justify-content:center; min-width:112px; padding:10px 18px; border:1px solid #333943; border-radius:999px; background:#333943; color:#fff; text-decoration:none; font-size:.93rem; font-weight:700; transition:.16s ease; }
+    .button:hover { transform:translateY(-2px); background:var(--blue); border-color:var(--blue); }
+    .stream-row { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; overflow:hidden; }
+    .stream-card { position:relative; min-width:0; aspect-ratio:9/16; overflow:hidden; border-radius:6px; background:#f5f7fa; }
+    .stream-card video { width:100%; height:100%; display:block; object-fit:contain; }
+    .live-badge { position:absolute; z-index:2; top:16px; left:16px; padding:6px 10px; border-radius:5px; color:#fff; background:#d91d38; font-size:.78rem; font-weight:850; letter-spacing:.08em; }
+    .stream-meta { position:absolute; z-index:2; left:18px; right:18px; bottom:18px; color:#fff; text-align:left; text-shadow:0 2px 12px rgba(0,0,0,.7); }
+    .stream-meta strong { display:block; font-size:clamp(1rem,2vw,1.32rem); line-height:1.2; }
+    .stream-meta span { display:block; margin-top:4px; color:rgba(255,255,255,.82); font-size:.83rem; }
+    .source-note { margin:13px 2px 0; color:var(--muted); font-size:.78rem; text-align:right; }
+    .source-note a { color:var(--blue); }
+    .content { width:100%; max-width:1260px; margin:56px auto 90px; }
+    .research-part { padding:36px; border:1px solid #cbd1d8; border-top:3px solid #17191c; }
+    .research-part + .research-part { margin-top:56px; }
+    .theory-foundation { padding:28px 0 32px; }
+    .theory-foundation--secondary { border-top:1px solid var(--line); }
+    .theory-application { margin:0; color:#555d67; }
+    .crossmodal-example-block { width:100%; margin:12px 0 16px; }
+    .example-intro { margin-right:6px; color:#555d67; font-size:.95rem; font-weight:700; }
+    .crossmodal-examples { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; }
+    .crossmodal-example { min-width:0; margin:0; }
+    .crossmodal-example h4 { min-height:2.8rem; margin:0 0 2px; color:var(--wine); font-size:1rem; line-height:1.4; }
+    .crossmodal-example img { display:block; width:100%; height:190px; object-fit:contain; }
+    .illustration-scenes { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); width:min(100%,285px); gap:8px; margin:2px auto 0; color:#555d67; font-size:.8rem; text-align:center; }
+    .illustration-scenes--pitch { display:flex; flex-wrap:wrap; justify-content:space-around; width:min(100%,400px); gap:4px 16px; }
+    .illustration-scenes--pitch span { white-space:nowrap; }
+    .example-source { color:#68707b; font-size:.82rem; font-weight:400; }
+    .example-source a { color:var(--blue); }
+    .theory-foundation h3,.hypothesis-section h3 { margin:0 0 16px; color:var(--wine); font-size:1.45rem; line-height:1.3; }
+    .theory-points h4 { margin:0 0 8px; color:var(--wine); font-size:1.2rem; font-weight:750; }
+    .theory-points p { margin:0; }
+    .theory-foundation .application-label { color:var(--blue); font-weight:700; }
+    .theory-inference { position:relative; padding-left:26px; }
+    .theory-foundation .theory-inference .application-label { color:inherit; }
+    .inference-arrow { position:absolute; top:0; left:0; color:var(--blue); font-weight:700; }
+    .theory-overview { margin:0 0 24px; color:#555d67; }
+    .theory-points p + p { margin-top:10px; }
+    .theory-points > li + li { margin-top:28px; }
+    .theory-equation { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:16px; margin:20px 0 16px; padding:8px 0; color:#30343b; }
+    .equation-result { display:inline-flex; align-items:center; gap:16px; max-width:100%; }
+    .equation-equals { font-size:1.5rem; }
+    .equation-fraction { display:inline-flex; flex-direction:column; align-items:center; max-width:100%; text-align:center; }
+    .equation-numerator { width:100%; padding:0 8px 10px; margin-bottom:10px; border-bottom:1px solid #68707b; }
+    .equation-tag { display:inline-block; max-width:100%; padding:7px 12px; border-radius:4px; font-size:1.05rem; font-weight:700; line-height:1.45; text-align:center; }
+    .equation-tag--rate { background:#eaf0f9; color:var(--blue); }
+    .equation-tag--value { background:#eaf3ee; color:#285b46; }
+    .equation-tag--cost { background:#f8ecef; color:var(--wine); }
+    .moderation-outcome { background:#f0f1f3; color:#3f4346; }
+    .hypothesis-section { padding:32px 0; border-top:1px solid var(--line); }
+    .hypothesis-section:last-child { padding-bottom:0; }
+    .mechanism-path { margin:24px 0; }
+    .mechanism-path h4 { margin:0 0 12px; font-size:1rem; color:var(--wine); }
+    .mechanism-explanation { display:grid; grid-template-columns:14rem minmax(0,1fr); align-items:baseline; gap:16px; margin:0 0 18px; padding:14px 16px; background:#f0f1f3; color:#555d67; }
+    .moderator-definition { align-items:center; }
+    .moderator-definition > span { text-align:center; }
+    .mechanism-tag { justify-self:start; padding:4px 10px; border-radius:4px; background:#dfe2e6; color:#30343b; font-size:1rem; font-weight:700; }
+    .mechanism-chain { list-style:none; margin:0; padding:0; color:#454c55; line-height:1.9; }
+    .mechanism-chain li { display:inline; }
+    .mechanism-chain li:last-child { color:var(--blue); font-weight:700; }
+    .mechanism-chain li + li::before { content:"\2192"; margin:0 10px; color:var(--blue); font-weight:400; }
+    .mechanism-chain .equation-tag { margin:4px 0; padding:5px 10px; font-size:1rem; vertical-align:middle; }
+    .mechanism-chain li:has(.equation-tag) { display:inline-flex; align-items:center; max-width:100%; vertical-align:middle; }
+    .mechanism-chain--aligned { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) minmax(0,1.45fr) minmax(0,1.3fr) minmax(0,1.15fr); gap:28px; align-items:stretch; line-height:1.5; }
+    .mechanism-chain--aligned li { position:relative; display:flex; align-items:center; justify-content:center; min-width:0; text-align:center; }
+    .mechanism-chain--aligned li + li::before { position:absolute; left:-23px; top:50%; transform:translateY(-50%); margin:0; }
+    .mechanism-chain--aligned .equation-tag { width:100%; margin:0; padding:8px 10px; }
+    .mechanism-summary { margin:24px 0 16px; color:#555d67; }
+    .research-model { padding-top:32px; border-top:1px solid var(--line); }
+    .research-model h3 { margin:0 0 24px; color:var(--wine); font-size:1.45rem; line-height:1.3; }
+    .research-model-figure { margin:0; overflow-x:auto; }
+    .research-model-figure:focus-visible { outline:2px solid var(--blue); outline-offset:4px; }
+    .research-model-figure svg { display:block; width:100%; min-width:960px; height:auto; font-family:'Helvetica Neue',Arial,sans-serif; letter-spacing:0; }
+    .model-group { fill:none; stroke:#8e9bab; stroke-width:1.5; stroke-dasharray:6 5; }
+    .model-node { fill:#f8ecef; }
+    .model-moderator { fill:#f8ecef; }
+    .model-path { fill:none; stroke:var(--blue); stroke-width:2; }
+    .model-heading { fill:#30343b; font-size:22px; font-weight:700; }
+    .model-label { fill:var(--wine); font-size:23px; font-weight:700; }
+    .model-moderator-label { fill:var(--wine); }
+    .model-hypothesis { fill:var(--blue); font-size:21px; font-weight:700; }
+    .model-control-heading { fill:#30343b; font-size:20px; font-weight:700; }
+    .model-control { fill:#555d67; font-size:18px; }
+    .data-collection h3 { margin:0 0 16px; color:var(--wine); font-size:1.45rem; line-height:1.3; }
+    .data-source-figure { margin:28px 0 0; }
+    .data-source-figure a { display:block; }
+    .data-source-figure img { display:block; width:100%; height:auto; }
+    .data-source-figure figcaption { margin-top:14px; color:var(--muted); font-size:.88rem; text-align:center; }
+    .variable-measurement { margin-top:32px; padding-top:32px; border-top:1px solid var(--line); }
+    .variable-measurement h3 { margin:0 0 20px; color:var(--wine); font-size:1.45rem; line-height:1.3; }
+    .variable-measurement h4 { margin:0 0 16px; color:var(--wine); font-size:1.2rem; line-height:1.4; }
+    .measurement-figure { margin:0 0 24px; background:#fff; }
+    .measurement-columns { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-areas:"text-title voice-title" "colloquial prosody" "diversified signal"; margin-top:24px; }
+    .measurement-columns h5 { margin:0; padding:0 24px 16px 0; color:var(--wine); font-size:1.125rem; }
+    .measurement-columns #text-measurement-title { grid-area:text-title; }
+    .measurement-columns #voice-measurement-title { grid-area:voice-title; padding-left:24px; border-left:1px solid var(--line); }
+    .measurement-dimension { min-width:0; padding:24px 24px 24px 0; border-top:1px solid var(--line); }
+    .measurement-dimension--voice { padding-left:24px; padding-right:0; border-left:1px solid var(--line); }
+    .measurement-colloquial { grid-area:colloquial; }
+    .measurement-diversified { grid-area:diversified; }
+    .measurement-prosody { grid-area:prosody; }
+    .measurement-signal { grid-area:signal; }
+    .measurement-dimension h6 { margin:0; font-size:1rem; line-height:1.4; }
+    .measurement-dimension .mechanism-tag { display:inline-block; max-width:100%; }
+    .measurement-dimension .motivation-points { margin:16px 0 0; }
+    .measurement-dimension .motivation-points li:last-child { margin-bottom:0; }
+    .measurement-dimension .motivation-points strong { color:var(--wine); }
+    .dependent-measurement,.moderator-measurement,.control-measurement { margin-top:32px; padding-top:24px; border-top:1px solid var(--line); }
+    .moderator-measurement h4 { display:flex; align-items:center; flex-wrap:wrap; gap:12px 20px; }
+    .moderator-measurement h4 .mechanism-tag { white-space:nowrap; }
+    .control-table { width:100%; border-collapse:collapse; table-layout:fixed; text-align:left; font-size:1rem; }
+    .control-table th,.control-table td { padding:14px 16px; border:1px solid var(--line); vertical-align:middle; overflow-wrap:break-word; }
+    .control-table th:first-child { width:26%; }
+    .control-table tbody th { background:#f0f1f3; color:#3f4346; font-weight:600; }
+    .control-table td { color:#555d67; }
+    .appearance-examples { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:24px; max-width:640px; margin:24px auto 0; }
+    .appearance-example { min-width:0; margin:0; text-align:center; }
+    .appearance-example img { display:block; width:180px; max-width:100%; height:auto; aspect-ratio:1/2; object-fit:contain; margin:0 auto; }
+    .appearance-example figcaption { margin-top:14px; color:var(--blue); font-size:1rem; font-weight:700; line-height:1.45; }
+    .engagement-equation { display:flex; flex-wrap:wrap; align-items:baseline; justify-content:center; gap:10px 14px; margin:24px 0 12px; color:#30343b; font-size:1.125rem; line-height:1.6; }
+    .engagement-equation strong { color:var(--wine); }
+    .engagement-equation span { display:inline-flex; align-items:baseline; gap:14px; }
+    .engagement-equation .equation-add::before { content:"+"; color:#68707b; }
+    .model-specification h3,.main-results h3 { margin:0 0 18px; color:var(--wine); font-size:1.45rem; line-height:1.3; }
+    .regression-equation { display:grid; gap:4px; margin:20px 0 8px; color:#30343b; font-family:Georgia,'Times New Roman',serif; font-size:1.2rem; font-style:italic; line-height:1.8; }
+    .regression-row { display:flex; flex-wrap:wrap; gap:0 12px; }
+    .regression-row > span { max-width:100%; }
+    .regression-equation sub { font-size:.7em; }
+    .estimation-method { margin:20px 0 8px; color:#30343b; font-size:1rem; font-weight:400; }
+    .estimation-method strong { color:var(--wine); font-weight:700; }
+    .results-summary { margin:0 0 16px; color:#30343b; font-size:1rem; }
+    .model-reasons { margin:8px 0 0; }
+    .model-reasons li { margin:6px 0; }
+    .main-results { margin-top:28px; padding-top:24px; border-top:1px solid var(--line); }
+    .results-table-wrap { overflow-x:auto; }
+    .results-table { width:100%; min-width:620px; border-collapse:collapse; table-layout:fixed; text-align:left; font-size:1rem; }
+    .results-table caption { padding:0 0 12px; color:#30343b; text-align:left; }
+    .results-table th,.results-table td { padding:7px 14px; vertical-align:middle; }
+    .results-table thead th { border-top:2px solid #30343b; border-bottom:1px solid #30343b; color:#30343b; font-weight:700; text-align:center; }
+    .results-table thead th:first-child { width:43%; text-align:left; }
+    .results-table tbody th { color:#3f4346; font-weight:400; }
+    .results-table tbody td { text-align:center; white-space:nowrap; font-variant-numeric:tabular-nums; }
+    .results-table tbody tr:last-child > * { border-bottom:2px solid #30343b; }
+    .results-table sup { color:var(--blue); font-size:.8em; }
+    .results-table .result-negative { color:var(--wine); font-weight:700; }
+    .results-table .result-positive { color:var(--wine); font-weight:700; }
+    .results-table strong[class^="result-"] sup { color:inherit; }
+    .results-table tfoot td { padding-top:12px; color:#555d67; font-size:.9rem; }
+    .significance-key { display:flex; gap:28px; white-space:nowrap; }
+    .heterogeneity-analysis,.robustness-analysis { margin-top:32px; padding-top:28px; border-top:1px solid var(--line); }
+    .heterogeneity-analysis h3,.robustness-analysis h3 { margin:0 0 16px; color:var(--wine); font-size:1.45rem; line-height:1.3; }
+    .heterogeneity-block + .heterogeneity-block { margin-top:32px; padding-top:28px; border-top:1px solid var(--line); }
+    .heterogeneity-block h4 { margin:0 0 16px; font-size:1rem; }
+    .heterogeneity-block h4 .mechanism-tag { display:inline-block; }
+    .heterogeneity-scroll,.robustness-scroll { overflow-x:auto; scrollbar-width:auto; scrollbar-color:#8796a9 #edf0f4; cursor:grab; user-select:none; }
+    :is(.heterogeneity-scroll,.robustness-scroll)::-webkit-scrollbar { height:14px; }
+    :is(.heterogeneity-scroll,.robustness-scroll)::-webkit-scrollbar-track { background:#edf0f4; border-radius:4px; }
+    :is(.heterogeneity-scroll,.robustness-scroll)::-webkit-scrollbar-thumb { background:#8796a9; border:3px solid #edf0f4; border-radius:7px; }
+    :is(.heterogeneity-scroll,.robustness-scroll).is-dragging { cursor:grabbing; }
+    :is(.heterogeneity-scroll,.robustness-scroll):focus-visible { outline:2px solid var(--blue); outline-offset:4px; }
+    .heterogeneity-table { width:2500px; min-width:2500px; }
+    .heterogeneity-table .variable-column { width:260px; }
+    .heterogeneity-table .model-column { width:140px; }
+    .heterogeneity-table thead th { border-top:0; border-bottom:1px solid var(--line); }
+    .heterogeneity-table thead th:first-child { width:auto; }
+    .heterogeneity-table thead th:not(.variable-heading) { text-align:center; }
+    .heterogeneity-table thead tr:first-child th { border-top:2px solid #30343b; }
+    .heterogeneity-table thead tr:last-child th { border-bottom:1px solid #30343b; }
+    .heterogeneity-table .group-start { border-left:2px solid #98a3b1; }
+    .heterogeneity-table .subgroup-start { border-left:1px solid var(--line); }
+    .heterogeneity-table .variable-heading,.heterogeneity-table tbody th { position:sticky; left:0; z-index:2; background:#fff; box-shadow:2px 0 0 #98a3b1; }
+    .heterogeneity-table .variable-heading { z-index:3; border-bottom:1px solid #30343b; }
+    .heterogeneity-table tbody th { font-size:.95rem; }
+    .heterogeneity-table .result-key { color:var(--wine); font-weight:700; }
+    .heterogeneity-table sup { color:inherit; }
+    .heterogeneity-explanations { margin-top:28px; }
+    .heterogeneity-explanations > .explanations-heading { margin:0 0 16px; color:var(--wine); font-size:1.125rem; font-weight:700; line-height:1.4; }
+    .heterogeneity-table thead small { display:block; margin-top:3px; color:var(--muted); font-size:.75rem; font-weight:400; }
+    .heterogeneity-explanation { margin-top:20px; }
+    .heterogeneity-explanation > p { margin:0 0 12px; color:#555d67; font-size:.9rem; font-weight:600; }
+    .heterogeneity-chain { grid-template-columns:repeat(4,minmax(0,1fr)); }
+    .robustness-table { width:1660px; min-width:1660px; }
+    .robustness-table .variable-column { width:260px; }
+    .robustness-table .model-column { width:140px; }
+    .robustness-table thead th:first-child { width:auto; }
+    .robustness-table thead th:first-child,.robustness-table tbody th { position:sticky; left:0; z-index:2; background:#fff; box-shadow:2px 0 0 #98a3b1; }
+    .robustness-table tbody th { font-size:.95rem; }
+    .robustness-table .group-start { border-left:1px solid var(--line); }
+    .robustness-table sup { color:inherit; }
+    .robustness-table .result-key { color:var(--wine); font-weight:700; }
+    .hypothesis-statement,.gap-note { display:grid; grid-template-columns:max-content minmax(0,1fr); align-items:baseline; gap:20px; padding:18px 20px; border-left:4px solid var(--blue); background:#f1f5fb; color:#555d67; font-size:1rem; font-weight:400; line-height:1.6; }
+    .hypothesis-statement { margin:0; }
+    .hypothesis-statement > strong,.gap-note > strong { color:var(--blue); font-size:1.125rem; font-weight:800; line-height:1.5; white-space:nowrap; }
+    .hypothesis-section > .section-label { color:var(--wine); }
+    .intro { margin:0; padding:0 0 32px; text-align:left; }
+    .part-heading { display:grid; grid-template-columns:auto minmax(0,1fr); align-items:baseline; gap:24px; }
+    .part-number,.part-heading h2 { color:#17191c; font-size:2rem; font-weight:800; line-height:1.2; letter-spacing:0; }
+    .part-number { padding-right:24px; border-right:2px solid #cbd1d8; white-space:nowrap; }
+    .part-heading h2 { margin:0; }
+    h2 { margin:0 0 18px; font-size:clamp(1.75rem,3.5vw,2.55rem); line-height:1.2; letter-spacing:-.025em; }
+    .lead { max-width:900px; margin:0; color:#535a64; font-size:1.12rem; }
+    .stats { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; margin:38px 0 76px; }
+    .stat { padding:24px 18px; border:1px solid var(--line); border-radius:12px; background:var(--soft); text-align:center; }
+    .stat strong { display:block; color:var(--blue); font-size:1.55rem; line-height:1.2; }
+    .stat span { display:block; margin-top:7px; color:var(--muted); font-size:.84rem; }
+    .two-col { display:grid; grid-template-columns:1fr 1fr; gap:54px; align-items:start; }
+    .panel { padding-top:26px; border-top:3px solid var(--ink); }
+    .panel p,.panel li { color:#555d67; }
+    .finding { margin:12px 0; padding:15px 17px; border-left:4px solid var(--wine); background:#fbf5f6; }
+    .context-block { margin:0; padding:32px 0; border-top:1px solid var(--line); }
+    .context-block h3 { display:flex; align-items:flex-start; gap:12px; margin:0 0 12px; color:#3f4346; font-size:1.45rem; line-height:1.25; }
+    .step-number { flex:0 0 40px; padding-top:5px; color:var(--blue); font-size:.88rem; font-weight:850; letter-spacing:.1em; }
+    .context-block > p { color:#555d67; }
+    .market-table-wrap { margin:24px 0 18px; overflow-x:auto; border:1px solid var(--line); border-radius:11px; }
+    .market-table { width:100%; border-collapse:collapse; text-align:left; }
+    .market-table th { padding:13px 15px; background:#f1f4f8; color:#38404a; font-size:.79rem; letter-spacing:.05em; text-transform:uppercase; }
+    .market-table td { padding:14px 15px; border-top:1px solid var(--line); color:#535a64; font-size:.92rem; vertical-align:top; }
+    .market-table td:nth-child(2) { color:var(--blue); font-weight:750; }
+    .market-table .forecast { display:inline-block; padding:2px 7px; border-radius:999px; background:#f7e9ed; color:var(--wine); font-size:.72rem; font-weight:750; white-space:nowrap; }
+    .gap-note { margin:18px 0 0; }
+    .context-grid { display:grid; grid-template-columns:minmax(0,1fr); }
+    .context-grid .context-block:last-child { padding-bottom:0; }
+    .rq-box { margin-top:28px; text-align:left; }
+    .rq-list { display:grid; gap:18px; margin:0; padding:0; list-style:none; }
+    .rq-list li { display:grid; grid-template-columns:3rem minmax(0,1fr); align-items:center; gap:18px; padding:22px 34px; border:1px solid #c6d5eb; border-radius:999px; background:#edf3fc; color:var(--blue); font-size:1.125rem; line-height:1.55; }
+    .rq-list strong { color:var(--blue); font-weight:800; }
+    .market-chart { margin:24px 0 14px; padding:22px 20px 12px; border:1px solid var(--line); border-radius:12px; background:#fbfcfe; }
+    .market-combo { display:grid; grid-template-columns:minmax(0,1fr) 235px; gap:24px; align-items:stretch; }
+    .virtual-stat-block { grid-column:2; grid-row:1; display:flex; flex-direction:column; justify-content:center; padding:24px 22px; border-radius:10px; background:#eef3f9; }
+    .virtual-stat-block h4 { margin:0 0 18px; color:var(--wine); font-size:1rem; line-height:1.3; }
+    .virtual-stat-block h4 span { display:block; margin-top:3px; color:var(--muted); font-size:.76rem; font-weight:400; }
+    .virtual-stat { padding:5px 0 18px; }
+    .virtual-stat + .virtual-stat { padding:20px 0 4px; border-top:1px solid #ccd7e5; }
+    .virtual-stat strong { display:block; color:var(--blue); font-size:2.55rem; line-height:1; }
+    .virtual-stat:last-of-type strong { color:var(--wine); font-size:2rem; }
+    .virtual-stat span { display:block; margin-top:7px; color:#555d67; font-size:.8rem; line-height:1.4; }
+    .virtual-stat-source { margin:18px 0 0; color:var(--muted); font-size:.7rem; }
+    .market-chart-pane { grid-column:1; grid-row:1; min-width:0; }
+    .chart-heading { display:flex; justify-content:space-between; gap:18px; align-items:flex-end; margin:0 6px 10px; }
+    .chart-heading strong { color:#3f4346; font-size:1rem; }
+    .chart-heading span { color:var(--muted); font-size:.78rem; }
+    .market-chart svg { display:block; width:100%; height:auto; overflow:visible; }
+    .chart-source { margin:8px 6px 0; color:var(--muted); font-size:.76rem; }
+    .chart-source a { color:var(--blue); }
+    .motivation-points { margin:16px 0 22px; padding:0; list-style:none; }
+    .motivation-points li { position:relative; margin:12px 0; padding-left:24px; color:#555d67; }
+    .motivation-points li::before { content:""; position:absolute; top:.68em; left:2px; width:7px; height:7px; border-radius:50%; background:var(--blue); }
+    .motivation-points strong { color:#3f4346; }
+    footer { padding:30px 0 45px; border-top:1px solid var(--line); color:var(--muted); font-size:.88rem; text-align:center; }
+    .research-part .section-heading { position:relative; margin:0 0 24px; padding:0 0 15px; border-bottom:1px solid var(--line); color:var(--wine); font-size:1.75rem; font-weight:750; line-height:1.3; letter-spacing:0; }
+    .research-part .section-heading::after { content:""; position:absolute; left:0; bottom:-1px; width:64px; height:3px; background:currentColor; }
+    .research-part .section-heading.section-heading--blue { color:var(--blue); }
+    @media (max-width:1000px) {
+      .heterogeneity-chain { grid-template-columns:minmax(0,1fr); }
+      .mechanism-chain--aligned { grid-template-columns:minmax(0,1fr); gap:28px; }
+      .mechanism-chain--aligned li { justify-content:flex-start; text-align:left; }
+      .mechanism-chain--aligned li + li::before { content:"\2193"; top:-25px; left:12px; transform:none; }
+      .mechanism-chain--aligned .equation-tag { width:auto; text-align:left; }
+    }
+    @media (max-width:480px) {
+      .appearance-examples { grid-template-columns:minmax(0,1fr); gap:28px; }
+    }
+    @media (max-width:760px) {
+      .research-part .section-heading { font-size:1.5rem; margin-bottom:20px; padding-bottom:13px; }
+      .research-part .section-heading::after { width:48px; }
+      .heterogeneity-table { width:2390px; min-width:2390px; }
+      .heterogeneity-table .variable-column { width:150px; }
+      .heterogeneity-table tbody th { padding:8px; font-size:.85rem; }
+      .robustness-table { width:1550px; min-width:1550px; }
+      .robustness-table .variable-column { width:150px; }
+      .robustness-table tbody th { padding:8px; font-size:.85rem; }
+      .regression-equation { grid-template-columns:minmax(0,1fr); font-size:1.05rem; gap:4px; }
+      .control-table { font-size:.95rem; }
+      .control-table th:first-child { width:40%; }
+      .control-table th,.control-table td { padding:10px 8px; }
+      .measurement-columns { grid-template-columns:minmax(0,1fr); grid-template-areas:"text-title" "colloquial" "diversified" "voice-title" "prosody" "signal"; }
+      .measurement-columns #voice-measurement-title { margin-top:16px; padding-left:0; border-left:0; }
+      .measurement-dimension { padding:20px 0; border-left:0; }
+      .crossmodal-examples { grid-template-columns:minmax(0,1fr); gap:18px; }
+      .crossmodal-example h4 { min-height:0; }
+      .page { width:min(100% - 24px,1260px); }
+      .topbar { padding:16px 0; }
+      .paper-tag { display:none; }
+      .hero { margin-top:22px; }
+      .title-main { font-size:clamp(2.45rem,12vw,3.8rem); }
+      .title-sub { font-size:clamp(1.45rem,6.5vw,2.05rem); }
+      .stream-row { grid-auto-flow:column; grid-auto-columns:78%; grid-template-columns:none; overflow-x:auto; scroll-snap-type:x mandatory; }
+      .stream-card { scroll-snap-align:center; }
+      .source-note { text-align:left; }
+      .content { margin-top:62px; }
+      .stats { grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .two-col { grid-template-columns:1fr; gap:36px; }
+      .research-part { padding:24px 18px; }
+      .research-part + .research-part { margin-top:36px; }
+      .theory-equation { gap:12px; }
+      .equation-tag { padding:6px 10px; font-size:.95rem; }
+      .hypothesis-statement,.gap-note { grid-template-columns:minmax(0,1fr); padding:16px 12px; gap:8px; }
+      .mechanism-explanation { grid-template-columns:minmax(0,1fr); gap:10px; }
+      .context-block { padding:26px 0; }
+      .market-table { min-width:680px; }
+      .part-heading { grid-template-columns:minmax(0,1fr); gap:10px; }
+      .part-number { padding-right:0; border-right:0; }
+      .part-number,.part-heading h2 { font-size:1.65rem; }
+      .rq-list li { grid-template-columns:minmax(0,1fr); gap:8px; padding:18px 20px; border-radius:26px; font-size:1.05rem; }
+      .chart-heading { display:block; }
+      .chart-heading span { display:block; margin-top:4px; }
+      .market-combo { grid-template-columns:minmax(0,1fr); }
+      .virtual-stat-block { grid-column:auto; grid-row:auto; display:grid; grid-template-columns:1fr 1fr; gap:0 20px; }
+      .market-chart-pane { grid-column:auto; grid-row:auto; }
+      .virtual-stat-block h4,.virtual-stat-source { grid-column:1/-1; }
+      .virtual-stat + .virtual-stat { padding:5px 0 18px; border-top:0; border-left:1px solid #ccd7e5; padding-left:20px; }
+    }
+    @media (max-width:480px) {
+      .market-chart { padding:18px 10px 12px; }
+      .virtual-stat-block { display:block; padding:20px 16px; }
+      .virtual-stat + .virtual-stat { padding:18px 0 0; border-left:0; border-top:1px solid #ccd7e5; }
+      .context-block h3 { gap:8px; font-size:1.2rem; }
+      .step-number { flex-basis:28px; }
+    }
+    .page-contents[hidden],.toc-open-button[hidden],.toc-backdrop[hidden] { display:none; }
+    body.toc-expanded { padding-left:280px; }
+    .page-contents { position:fixed; inset:0 auto 0 0; z-index:30; display:flex; flex-direction:column; width:280px; background:#fff; border-right:1px solid var(--line); letter-spacing:0; }
+    .toc-header { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-shrink:0; padding:18px 16px 14px 20px; }
+    .toc-title { color:var(--ink); font-size:.95rem; font-weight:750; text-decoration:none; }
+    .toc-open-button,.toc-close-button { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; flex-shrink:0; padding:0; border:0; border-radius:4px; background:#fff; color:var(--muted); cursor:pointer; }
+    .toc-open-button { position:fixed; z-index:25; top:14px; left:12px; border:1px solid var(--line); }
+    .toc-open-button:hover,.toc-close-button:hover { background:var(--soft); color:var(--blue); }
+    .toc-open-button:focus-visible,.toc-close-button:focus-visible,.page-contents a:focus-visible { outline:2px solid var(--blue); outline-offset:2px; }
+    .toc-nav { min-height:0; overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; padding:0 12px 24px; }
+    .toc-nav ul { margin:0; padding:0; list-style:none; }
+    .toc-nav .toc-group { margin-top:16px; }
+    .toc-nav a { display:block; padding:7px 10px; border-left:2px solid transparent; border-radius:0 4px 4px 0; color:var(--muted); font-size:.85rem; line-height:1.45; text-decoration:none; overflow-wrap:anywhere; }
+    .toc-nav .toc-part { color:#444b55; font-weight:700; font-size:.875rem; }
+    .toc-nav .toc-group ul a { padding-left:22px; }
+    .toc-nav .toc-group ul a.toc-subsection { padding-left:32px; font-size:.8rem; }
+    .toc-nav a:hover { color:var(--blue); background:#f5f7fa; }
+    .toc-nav a[aria-current="location"] { color:var(--blue); background:#edf3fc; border-left-color:var(--blue); font-weight:700; }
+    .toc-group.is-current > .toc-part { color:var(--blue); }
+    .toc-target { scroll-margin-top:28px; }
+    body.toc-ready:not(.toc-expanded) .topbar { padding-left:44px; }
+    @media (max-width:1279px) {
+      body.toc-ready { padding-top:52px; }
+      body.toc-expanded { padding-left:0; }
+      body.toc-modal { overflow:hidden; }
+      body.toc-ready::before { content:""; position:fixed; z-index:20; inset:0 0 auto; height:52px; background:#fff; border-bottom:1px solid var(--line); }
+      .toc-open-button { top:8px; }
+      .page-contents { width:min(320px,calc(100% - 48px)); }
+      .toc-backdrop { position:fixed; inset:0; z-index:29; background:rgba(24,30,40,.28); }
+      .toc-target { scroll-margin-top:76px; }
+      body.toc-ready:not(.toc-expanded) .topbar { padding-left:0; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      html { scroll-behavior:auto; }
+    }
+  </style>
+</head>
+<body>
+  <button class="toc-open-button" type="button" aria-label="Open contents" title="Open contents" aria-controls="page-contents" aria-expanded="false" hidden><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/></svg></button>
+  <div class="toc-backdrop" hidden></div>
+  <aside class="page-contents" id="page-contents" aria-label="Page contents" hidden>
+    <div class="toc-header">
+      <a class="toc-title" href="#paper-overview">TFSC Research</a>
+      <button class="toc-close-button" type="button" aria-label="Close contents" title="Close contents" aria-controls="page-contents" aria-expanded="true"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/></svg></button>
+    </div>
+    <nav class="toc-nav" aria-label="Research page sections">
+      <a class="toc-overview" href="#paper-overview">Overview</a>
+      <ul>
+        <li class="toc-group">
+          <a class="toc-part" href="#part1-title">Part 1 &middot; Research Questions</a>
+          <ul>
+            <li><a href="#research-questions-title">1.1 Our Research Questions</a></li>
+            <li><a href="#motivation-1">1.2 Why Digital Streamers?</a></li>
+            <li><a href="#motivation-2">1.3 Digital vs. Human Streamers</a></li>
+            <li><a href="#motivation-3">1.4 Language Naturalness</a></li>
+            <li><a href="#motivation-4">1.5 Anthropomorphic Appearance</a></li>
+          </ul>
+        </li>
+        <li class="toc-group">
+          <a class="toc-part" href="#part2-title">Part 2 &middot; Theory &amp; Hypotheses</a>
+          <ul>
+            <li><a href="#theory-title">2.1 Theory 1: Information Foraging</a></li>
+            <li><a href="#text-mechanisms-title">H1 &middot; Text Naturalness</a></li>
+            <li><a href="#voice-mechanisms-title">H2 &middot; Voice Naturalness</a></li>
+            <li><a href="#cross-modal-theory-title">2.2 Theory 2: Cross-modal Correspondence</a></li>
+            <li><a href="#text-moderation-title">H3 &middot; Text Moderation</a></li>
+            <li><a href="#voice-moderation-title">H4 &middot; Voice Moderation</a></li>
+            <li><a href="#research-model-title">2.3 Research Model</a></li>
+          </ul>
+        </li>
+        <li class="toc-group">
+          <a class="toc-part" href="#part-three-title">Part 3 &middot; Data &amp; Measurement</a>
+          <ul>
+            <li><a href="#data-collection-title">3.1 Data Collection</a></li>
+            <li><a href="#variable-measurement-title">3.2 Variable Measurement</a></li>
+            <li><a class="toc-subsection" href="#independent-variables-title">3.2.1 Independent Variables</a></li>
+            <li><a class="toc-subsection" href="#dependent-variable-title">3.2.2 Dependent Variable</a></li>
+            <li><a class="toc-subsection" href="#moderating-variable-title">3.2.3 Moderating Variable</a></li>
+            <li><a class="toc-subsection" href="#control-variables-title">3.2.4 Control Variables</a></li>
+          </ul>
+        </li>
+        <li class="toc-group">
+          <a class="toc-part" href="#part-four-title">Part 4 &middot; Models &amp; Results</a>
+          <ul>
+            <li><a href="#model-specification-title">4.1 Model Specification</a></li>
+            <li><a href="#main-results-title">4.2 Main Results</a></li>
+            <li><a href="#heterogeneity-title">4.3 Heterogeneity Analysis</a></li>
+            <li><a class="toc-subsection" href="#possible-explanations-title">4.3.1 Possible Explanations</a></li>
+            <li><a href="#robustness-title">4.4 Robustness Checks</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+  <div class="page">
+    <nav class="topbar" aria-label="Project navigation">
+      <a class="back-link" href="../index.html#publications">&larr; Back to Publications</a>
+      <span class="paper-tag">TFSC 2025</span>
+    </nav>
+
+    <header class="hero" id="paper-overview">
+      <p class="eyebrow">Technological Forecasting &amp; Social Change · 2025</p>
+      <h1><span class="title-main">Is more human-like better?</span><span class="title-sub">The impact of virtual streamer language naturalness on user engagement</span></h1>
+      <p class="authors"><strong>Ruoxi Zhang</strong>, Jiaming Fang, Lintong Han, and Miyan Liao</p>
+      <p class="affiliation">School of Management and Economics, University of Electronic Science and Technology of China</p>
+      <div class="actions">
+        <a class="button" href="https://doi.org/10.1016/j.techfore.2025.124392" target="_blank" rel="noopener">Full Paper</a>
+      </div>
+    </header>
+
+    <section aria-label="Virtual streamer livestream recordings">
+      <div class="stream-row">
+        <article class="stream-card">
+          <video autoplay muted loop playsinline controls preload="auto" aria-label="Virtual streamer recording 1" poster="../assets/tfsc-clips/taobao-silent-1.jpg"><source src="../assets/tfsc-clips/taobao-silent-1.mp4" type="video/mp4"></video>
+        </article>
+        <article class="stream-card">
+          <video autoplay muted loop playsinline controls preload="auto" aria-label="Virtual streamer recording 2" poster="../assets/tfsc-clips/taobao-silent-2.jpg"><source src="../assets/tfsc-clips/taobao-silent-2.mp4" type="video/mp4"></video>
+        </article>
+        <article class="stream-card">
+          <video autoplay muted loop playsinline controls preload="auto" aria-label="Virtual streamer recording 3" poster="../assets/tfsc-clips/taobao-silent-3.jpg"><source src="../assets/tfsc-clips/taobao-silent-3.mp4" type="video/mp4"></video>
+        </article>
+        <article class="stream-card">
+          <video autoplay muted loop playsinline controls preload="auto" aria-label="Virtual streamer recording 4" poster="../assets/tfsc-clips/taobao-silent-4.jpg"><source src="../assets/tfsc-clips/taobao-silent-4.mp4" type="video/mp4"></video>
+        </article>
+      </div>
+    </section>
+
+    <main class="content">
+      <section class="research-part" aria-labelledby="part1-title">
+      <section class="intro">
+        <div class="part-heading">
+          <span class="part-number">Part 1</span>
+          <h2 id="part1-title">How We Arrived at Our Research Questions</h2>
+        </div>
+        <div class="rq-box">
+          <h3 class="section-heading" id="research-questions-title">1.1 Our Research Questions</h3>
+          <ol class="rq-list">
+            <li><strong>RQ1</strong><span>How do text and voice naturalness influence user engagement with virtual streamers in livestreaming eCommerce?</span></li>
+            <li><strong>RQ2</strong><span>How does anthropomorphic appearance moderate the effects of text and voice naturalness on user engagement?</span></li>
+          </ol>
+        </div>
+      </section>
+
+      <article class="context-block">
+        <h3 class="section-heading" id="motivation-1">1.2 Why We Focus on Digital Streamers in Livestreaming eCommerce</h3>
+        <ul class="motivation-points">
+          <li><strong>Livestreaming eCommerce is rapidly expanding.</strong> China’s market grew from ¥0.42 trillion in 2019 to ¥4.92 trillion in 2023, reaching 35.2% year-on-year growth.</li>
+          <li><strong>Virtual streamers are emerging within this expanding market.</strong> Merchants increasingly use AI-driven presenters to extend operating hours, reduce costs, and support brand-operated livestreams.</li>
+        </ul>
+        <figure class="market-chart">
+          <div class="market-combo">
+          <aside class="virtual-stat-block" aria-label="Virtual streamer market outlook for 2025">
+            <h4>Virtual Streamer Outlook<span>2025 forecast</span></h4>
+            <div class="virtual-stat"><strong>39%</strong><span>projected market penetration</span></div>
+            <div class="virtual-stat"><strong>¥26.971B</strong><span>projected market size<br>≈ US$3.75B</span></div>
+          </aside>
+          <div class="market-chart-pane">
+          <figcaption class="chart-heading"><strong>China Livestreaming eCommerce Market Size, 2019–2026</strong><span>RMB trillion · 2024e–2026e are forecasts</span></figcaption>
+          <svg viewBox="0 0 960 420" role="img" aria-label="Bar chart showing China's livestreaming eCommerce market increasing from 0.42 trillion yuan in 2019 to a forecast 8.16 trillion yuan in 2026">
+            <g stroke="#dfe5ec" stroke-width="1">
+              <line x1="70" y1="330" x2="925" y2="330"/><line x1="70" y1="270" x2="925" y2="270"/><line x1="70" y1="210" x2="925" y2="210"/><line x1="70" y1="150" x2="925" y2="150"/><line x1="70" y1="90" x2="925" y2="90"/>
+            </g>
+            <g fill="#7a828d" font-family="Arial, sans-serif" font-size="13" text-anchor="end">
+              <text x="58" y="335">0</text><text x="58" y="275">2</text><text x="58" y="215">4</text><text x="58" y="155">6</text><text x="58" y="95">8</text>
+            </g>
+            <g fill="#1e58a5">
+              <rect x="92" y="317" width="58" height="13" rx="3"/><rect x="194" y="293" width="58" height="37" rx="3"/><rect x="296" y="248" width="58" height="82" rx="3"/><rect x="398" y="221" width="58" height="109" rx="3"/><rect x="500" y="182" width="58" height="148" rx="3"/>
+            </g>
+            <g fill="#8fb0d5">
+              <rect x="602" y="154" width="58" height="176" rx="3"/><rect x="704" y="122" width="58" height="208" rx="3"/><rect x="806" y="85" width="58" height="245" rx="3"/>
+            </g>
+            <g fill="var(--blue)" font-family="Arial, sans-serif" font-size="13" font-weight="700" text-anchor="middle">
+              <text x="121" y="308">0.42</text><text x="223" y="284">1.24</text><text x="325" y="239">2.74</text><text x="427" y="212">3.64</text><text x="529" y="173">4.92</text><text x="631" y="145">5.86</text><text x="733" y="113">6.95</text><text x="835" y="76">8.16</text>
+            </g>
+            <g fill="#555d67" font-family="Arial, sans-serif" font-size="14" text-anchor="middle">
+              <text x="121" y="355">2019</text><text x="223" y="355">2020</text><text x="325" y="355">2021</text><text x="427" y="355">2022</text><text x="529" y="355">2023</text><text x="631" y="355">2024e</text><text x="733" y="355">2025e</text><text x="835" y="355">2026e</text>
+            </g>
+            <g font-family="Arial, sans-serif" font-size="12">
+              <rect x="321" y="385" width="17" height="10" rx="2" fill="#1e58a5"/><text x="346" y="394" fill="#68707b">Actual</text>
+              <rect x="418" y="385" width="17" height="10" rx="2" fill="#8fb0d5"/><text x="443" y="394" fill="#68707b">Forecast</text>
+              <text x="535" y="394" fill="var(--wine)" font-weight="700">2023: +35.2% YoY · 2024–2026 CAGR: 18.0%</text>
+            </g>
+          </svg>
+          <p class="chart-source">Source: recreated from <a href="https://report.iresearch.cn/report/202402/4316.shtml" target="_blank" rel="noopener">iResearch (2024), 2023 China Livestreaming eCommerce Industry Research Report</a>.</p>
+          </div>
+          </div>
+        </figure>
+        <p class="gap-note"><strong>Gap 1:</strong><span>Commercial adoption has advanced rapidly, but evidence explaining how virtual streamers shape consumer engagement remains limited.</span></p>
+      </article>
+
+      <section class="context-grid">
+        <article class="context-block">
+          <h3 class="section-heading" id="motivation-2">1.3 What’s the Difference Between Digital Streamers and Human Streamers?</h3>
+          <ul class="motivation-points">
+            <li><strong>Naturalness Is the Key Difference.</strong> Unlike human streamers, digital streamers rely on generated scripts, synthesized voices, and animated appearances to simulate human communication and appearance. A key distinction lies in how naturally they speak and how human-like they look. This raises the question: Does greater naturalness lead to higher user engagement?</li>
+          </ul>
+          <p class="gap-note"><strong>Gap 2:</strong><span>Prior research on digital streamers has largely followed the approach used to study human streamers, focusing on appearance, attractiveness, and functional features. However, no studies have examined how language naturalness, a distinctive characteristic of digital streamers, affects user engagement.</span></p>
+        </article>
+        <article class="context-block">
+          <h3 class="section-heading" id="motivation-3">1.4 Why We Study Language Naturalness as an Independent Variable</h3>
+          <ul class="motivation-points">
+            <li><strong>Language supports purchase decisions.</strong> Streamers need to clearly explain what products offer, how much they cost, and when and how to use them to help users make purchase decisions. Language is therefore the most important modality in livestreaming eCommerce.</li>
+            <li><strong>Language naturalness has textual and vocal dimensions.</strong> Drawing on linguistic theory, language comprises two components: text ("what is said") and voice ("how it is said"). We therefore distinguish between text naturalness and voice naturalness and examine their respective effects on user engagement.</li>
+          </ul>
+          <p class="gap-note"><strong>Gap 3:</strong><span>Prior research has examined language use among human streamers, but the effects of language naturalness on user engagement with digital streamers remain unexplored.</span></p>
+        </article>
+        <article class="context-block">
+          <h3 class="section-heading" id="motivation-4">1.5 Why We Consider Anthropomorphic Appearance as a Moderator</h3>
+          <ul class="motivation-points">
+            <li><strong>Perception Is Cross-Modal.</strong> Input from one sensory modality can influence perception in another. Anthropomorphic appearance may therefore shape how users perceive and process language naturalness, moderating its effects on user engagement.</li>
+          </ul>
+          <p class="gap-note"><strong>Gap 4:</strong><span>Prior research has not examined how anthropomorphic appearance moderates the effects of language naturalness on user engagement from a cross-modal perspective.</span></p>
+        </article>
+      </section>
+
+      </section>
+      <section class="research-part" aria-labelledby="part2-title">
+        <div class="part-heading">
+          <span class="part-number">Part 2</span>
+          <h2 id="part2-title">Theoretical Foundation and Hypotheses</h2>
+        </div>
+
+        <section class="theory-foundation" aria-labelledby="theory-title">
+          <h3 class="section-heading" id="theory-title">2.1 Theory 1: Information Foraging Theory</h3>
+          <p class="theory-overview">Drawing on optimal foraging theory, information foraging theory explains how people seek, gather, and consume information by analogy with animals foraging for food: they adapt their strategies to obtain valuable information relative to the costs incurred (<a href="https://doi.org/10.1037/0033-295X.106.4.643" target="_blank" rel="noopener">Pirolli &amp; Card, 1999</a>).</p>
+          <ul class="motivation-points theory-points">
+            <li>
+              <h4>Information Scent</h4>
+              <p>Information scent refers to how users use immediately available cues to assess the value and relevance of information before accessing it (<a href="https://doi.org/10.1037/0033-295X.106.4.643" target="_blank" rel="noopener">Pirolli &amp; Card, 1999</a>).</p>
+              <p class="theory-inference"><span class="inference-arrow" aria-hidden="true">&rarr;</span><strong class="application-label">In our study,</strong> streamers' language provides the primary cues because it conveys core product information, such as attributes, prices, and usage scenarios. Anthropomorphic appearance provides supplementary cues because it can shape how users perceive and process that language.</p>
+            </li>
+            <li>
+              <h4>Information Gain Rate</h4>
+              <p>Information gain rate is the amount of valuable information obtained per unit cost. Users seek to maximize this rate by balancing information gains against the time and effort required to find and process information.</p>
+              <div class="theory-equation" role="math" aria-label="Information Gain Rate equals Perceived Information Value divided by Acquisition Cost">
+                <span class="equation-result"><span class="equation-tag equation-tag--rate">Information Gain Rate</span><span class="equation-equals">=</span></span>
+                <span class="equation-fraction"><span class="equation-numerator"><span class="equation-tag equation-tag--value">Perceived Information Value</span></span><span class="equation-tag equation-tag--cost">Acquisition Cost</span></span>
+              </div>
+              <p class="theory-inference"><span class="inference-arrow" aria-hidden="true">&rarr;</span><strong class="application-label">In livestreaming eCommerce,</strong> users seek to understand useful product information with less time and effort to decide whether to buy.</p>
+            </li>
+          </ul>
+        </section>
+
+        <section class="hypothesis-section" aria-labelledby="text-mechanisms-title">
+          <p class="section-label">Hypothesis development</p>
+          <p class="hypothesis-statement" id="text-mechanisms-title"><strong>Hypothesis 1</strong><span>Increased text naturalness in virtual streamers negatively affects user engagement.</span></p>
+          <div class="mechanism-path">
+            <p class="mechanism-explanation"><strong class="mechanism-tag">Colloquial Expressions</strong><span>Colloquial expressions are informal words and phrases commonly used in everyday conversation.</span></p>
+            <ol class="mechanism-chain mechanism-chain--aligned" aria-label="Proposed information-value pathway for text naturalness">
+              <li>Colloquial expressions</li>
+              <li>Streamers appear less professional</li>
+              <li>Reduced persuasiveness and credibility</li>
+              <li><span class="equation-tag equation-tag--value" aria-label="Lower perceived information value">&#8595; Perceived Information Value</span></li>
+              <li><span class="equation-tag equation-tag--rate" aria-label="Lower information gain rate">&#8595; Information Gain Rate</span></li>
+            </ol>
+          </div>
+          <div class="mechanism-path">
+            <p class="mechanism-explanation"><strong class="mechanism-tag">Diversified Expressions</strong><span>Diversified expressions use varied vocabulary and topics with less repetition.</span></p>
+            <ol class="mechanism-chain mechanism-chain--aligned" aria-label="Proposed acquisition-cost pathway for text naturalness">
+              <li>Diversified expressions</li>
+              <li>Greater information complexity</li>
+              <li>More effort to comprehend and process information</li>
+              <li><span class="equation-tag equation-tag--cost" aria-label="Higher information acquisition cost">&#8593; Acquisition Cost</span></li>
+              <li><span class="equation-tag equation-tag--rate" aria-label="Lower information gain rate">&#8595; Information Gain Rate</span></li>
+            </ol>
+          </div>
+          <p class="mechanism-summary theory-inference"><span class="inference-arrow" aria-hidden="true">&rarr;</span>Greater text naturalness may make streamers appear less professional, weaken the credibility of product information, and require more effort to understand it, lowering users' information gain rate and discouraging engagement.</p>
+        </section>
+
+        <section class="hypothesis-section" aria-labelledby="voice-mechanisms-title">
+          <p class="section-label">Hypothesis development</p>
+          <p class="hypothesis-statement" id="voice-mechanisms-title"><strong>Hypothesis 2</strong><span>Increased voice naturalness in virtual streamers positively affects user engagement.</span></p>
+          <div class="mechanism-path">
+            <p class="mechanism-explanation"><strong class="mechanism-tag">Prosody</strong><span>Prosody includes intonation, stress, rhythm, and tone of voice that make speech sound natural and expressive.</span></p>
+            <ol class="mechanism-chain mechanism-chain--aligned" aria-label="Proposed information-value pathway for voice naturalness">
+              <li>Natural and rhythmical voice</li>
+              <li>Greater coherence and expressiveness</li>
+              <li>Prolonged user interest</li>
+              <li><span class="equation-tag equation-tag--value" aria-label="Higher perceived information value">&#8593; Perceived Information Value</span></li>
+              <li><span class="equation-tag equation-tag--rate" aria-label="Higher information gain rate">&#8593; Information Gain Rate</span></li>
+            </ol>
+          </div>
+          <div class="mechanism-path">
+            <p class="mechanism-explanation"><strong class="mechanism-tag">Signal Quality</strong><span>Signal quality refers to the clarity and stability of the voice signal.</span></p>
+            <ol class="mechanism-chain mechanism-chain--aligned" aria-label="Proposed acquisition-cost pathway for voice naturalness">
+              <li>High-quality voice signals</li>
+              <li>Clearer and more stable speech</li>
+              <li>Less confusion and easier comprehension</li>
+              <li><span class="equation-tag equation-tag--cost" aria-label="Lower information acquisition cost">&#8595; Acquisition Cost</span></li>
+              <li><span class="equation-tag equation-tag--rate" aria-label="Higher information gain rate">&#8593; Information Gain Rate</span></li>
+            </ol>
+          </div>
+          <p class="mechanism-summary theory-inference"><span class="inference-arrow" aria-hidden="true">&rarr;</span>Greater voice naturalness may make speech more expressive and easier to understand, sustaining users' interest and reducing processing effort, thereby increasing their information gain rate and encouraging engagement.</p>
+        </section>
+
+        <section class="theory-foundation theory-foundation--secondary" aria-labelledby="cross-modal-theory-title">
+          <h3 class="section-heading" id="cross-modal-theory-title">2.2 Theory 2: Cross-modal Correspondence Effect</h3>
+          <p class="theory-overview">Human sensory systems interact and influence one another, so input from one sensory modality can shape perception in another (<a href="https://mitpress.mit.edu/9780262033213/the-handbook-of-multisensory-processes/" target="_blank" rel="noopener">Calvert et al., 2004</a>).</p>
+          <div class="crossmodal-example-block">
+          <div class="crossmodal-examples">
+            <figure class="crossmodal-example">
+              <h4><span class="example-intro">For example:</span> Seeing a talker can help us understand their speech <span class="example-source">(<a href="https://doi.org/10.1111/j.1467-9280.2007.01911.x" target="_blank" rel="noopener">Rosenblum et al., 2007</a>)</span></h4>
+              <img src="../assets/crossmodal-lipreading-illustration.png" width="1536" height="1024" alt="Illustrated participant first watches a silent video of a talker, then listens to speech from the same person through headphones.">
+              <div class="illustration-scenes"><span>First: silent lipreading</span><span>Later: speech in noise</span></div>
+            </figure>
+            <figure class="crossmodal-example">
+              <h4>Sound can guide what we look at <span class="example-source">(<a href="https://doi.org/10.1509/jmr.14.0414" target="_blank" rel="noopener">Hagtvedt &amp; Brasel, 2016</a>)</span></h4>
+              <img src="../assets/crossmodal-pitch-illustration.png" width="1536" height="1024" alt="Illustrated listener attends to a pale vessel with a high-pitched sound and a dark vessel with a low-pitched sound; both objects retain their colors.">
+              <div class="illustration-scenes illustration-scenes--pitch"><span>High pitch: lighter objects</span><span>Low pitch: darker objects</span></div>
+            </figure>
+          </div>
+          </div>
+          <p class="theory-application theory-inference"><span class="inference-arrow" aria-hidden="true">&rarr;</span>In our study, the degree of anthropomorphic appearance of virtual streamers may influence how users perceive and process language naturalness.</p>
+        </section>
+
+        <section class="hypothesis-section" aria-labelledby="text-moderation-title">
+          <p class="section-label">Hypothesis development</p>
+          <p class="hypothesis-statement" id="text-moderation-title"><strong>Hypothesis 3</strong><span>A higher degree of anthropomorphic appearance mitigates the negative effect of text naturalness on user engagement.</span></p>
+          <div class="mechanism-path">
+            <p class="mechanism-explanation moderator-definition"><strong class="mechanism-tag">Anthropomorphic Appearance</strong><span>Anthropomorphic appearance refers to how closely a virtual streamer resembles a human.</span></p>
+            <ol class="mechanism-chain mechanism-chain--aligned" aria-label="Proposed trustworthiness pathway moderating the effect of text naturalness">
+              <li>Higher anthropomorphism</li>
+              <li>Streamers appear capable and trustworthy</li>
+              <li>Users feel confident about the transaction and decide faster</li>
+              <li><span class="equation-tag equation-tag--rate" aria-label="Higher information gain rate">&#8593; Information Gain Rate</span></li>
+              <li><span class="equation-tag moderation-outcome">Weaker negative effect of text naturalness</span></li>
+            </ol>
+          </div>
+          <p class="mechanism-summary theory-inference"><span class="inference-arrow" aria-hidden="true">&rarr;</span>A higher degree of anthropomorphic appearance may make virtual streamers appear more capable and trustworthy, helping users feel more confident about the transaction and decide faster, thereby increasing their information gain rate and mitigating the negative effect of text naturalness on user engagement.</p>
+        </section>
+
+        <section class="hypothesis-section" aria-labelledby="voice-moderation-title">
+          <p class="section-label">Hypothesis development</p>
+          <p class="hypothesis-statement" id="voice-moderation-title"><strong>Hypothesis 4</strong><span>A higher degree of anthropomorphic appearance amplifies the positive effect of voice naturalness on user engagement.</span></p>
+          <div class="mechanism-path">
+            <ol class="mechanism-chain mechanism-chain--aligned" aria-label="Proposed communication pathway moderating the effect of voice naturalness">
+              <li>Higher anthropomorphism</li>
+              <li>Clearer facial expressions convey emotions and intentions</li>
+              <li>Users grasp the streamer's meaning faster</li>
+              <li><span class="equation-tag equation-tag--rate" aria-label="Higher information gain rate">&#8593; Information Gain Rate</span></li>
+              <li><span class="equation-tag moderation-outcome">Amplifies positive effect of voice naturalness</span></li>
+            </ol>
+          </div>
+          <p class="mechanism-summary theory-inference"><span class="inference-arrow" aria-hidden="true">&rarr;</span>A higher degree of anthropomorphic appearance may enable clearer facial expressions that convey emotions and intentions, helping users grasp the streamer's meaning faster, thereby increasing their information gain rate and amplifying the positive effect of voice naturalness on user engagement.</p>
+        </section>
+
+        <section class="research-model" aria-labelledby="research-model-title">
+          <h3 class="section-heading" id="research-model-title">2.3 Research Model</h3>
+          <figure class="research-model-figure" tabindex="0" aria-label="Research model diagram">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 430" role="img" aria-labelledby="model-svg-title model-svg-description">
+              <title id="model-svg-title">Research model of language naturalness and user engagement</title>
+              <desc id="model-svg-description">Text naturalness negatively affects user engagement (H1), while voice naturalness positively affects user engagement (H2). Anthropomorphic appearance moderates these paths: it weakens the negative text naturalness effect (H3, positive interaction) and strengthens the positive voice naturalness effect (H4, positive interaction). Control variables are brand firm followers, merchant rating, service rating, product quantity, and live video weekend, duration, background music, and livestream subtitles.</desc>
+              <defs>
+                <marker id="model-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+                  <path d="M1 1 L9 5 L1 9" fill="none" stroke="var(--blue)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                </marker>
+              </defs>
+
+              <rect class="model-group" x="8" y="26" width="258" height="380"/>
+              <text class="model-heading" x="137" y="67" text-anchor="middle">Language Naturalness</text>
+              <rect class="model-node" x="48" y="112" width="178" height="74" rx="6"/>
+              <text class="model-label" x="137" y="143" text-anchor="middle"><tspan x="137">Text</tspan><tspan x="137" dy="28">Naturalness</tspan></text>
+              <rect class="model-node" x="48" y="292" width="178" height="74" rx="6"/>
+              <text class="model-label" x="137" y="323" text-anchor="middle"><tspan x="137">Voice</tspan><tspan x="137" dy="28">Naturalness</tspan></text>
+
+              <path class="model-path" d="M226 149 H831 V204" marker-end="url(#model-arrow)"/>
+              <text class="model-hypothesis" x="660" y="131" text-anchor="middle">H1: &#8722;</text>
+              <path class="model-path" d="M226 329 H831 V278" marker-end="url(#model-arrow)"/>
+              <text class="model-hypothesis" x="660" y="360" text-anchor="middle">H2: +</text>
+
+              <rect class="model-moderator" x="354" y="199" width="260" height="84" rx="6"/>
+              <text class="model-label model-moderator-label" x="484" y="234" text-anchor="middle"><tspan x="484">Anthropomorphic</tspan><tspan x="484" dy="28">Appearance</tspan></text>
+              <path class="model-path" d="M484 199 V149" marker-end="url(#model-arrow)"/>
+              <text class="model-hypothesis" x="528" y="182">H3: +</text>
+              <path class="model-path" d="M484 283 V329" marker-end="url(#model-arrow)"/>
+              <text class="model-hypothesis" x="528" y="315">H4: +</text>
+
+              <rect class="model-node" x="742" y="204" width="178" height="74" rx="6"/>
+              <text class="model-label" x="831" y="235" text-anchor="middle"><tspan x="831">User</tspan><tspan x="831" dy="28">Engagement</tspan></text>
+
+              <rect class="model-group" x="962" y="26" width="210" height="380"/>
+              <text class="model-heading" x="1067" y="67" text-anchor="middle">Control Variables</text>
+              <text class="model-control-heading" x="1067" y="111" text-anchor="middle">Brand Firm</text>
+              <text class="model-control" x="1067" y="141" text-anchor="middle"><tspan x="1067">Followers</tspan><tspan x="1067" dy="28">Merchant Rating</tspan><tspan x="1067" dy="28">Service Rating</tspan><tspan x="1067" dy="28">Product Quantity</tspan></text>
+              <line x1="980" y1="243" x2="1154" y2="243" stroke="#cbd1d8"/>
+              <text class="model-control-heading" x="1067" y="274" text-anchor="middle">Live Video</text>
+              <text class="model-control" x="1067" y="302" text-anchor="middle"><tspan x="1067">Weekend</tspan><tspan x="1067" dy="28">Duration</tspan><tspan x="1067" dy="28">Background music</tspan><tspan x="1067" dy="28">Livestream subtitles</tspan></text>
+              <path class="model-path" d="M962 241 H920" marker-end="url(#model-arrow)"/>
+            </svg>
+          </figure>
+        </section>
+      </section>
+      <section class="research-part" aria-labelledby="part-three-title">
+        <header class="intro">
+          <div class="part-heading">
+            <span class="part-number">Part 3</span>
+            <h2 id="part-three-title">Data Collection and Variable Measurement</h2>
+          </div>
+        </header>
+        <section class="data-collection" aria-labelledby="data-collection-title">
+          <h3 class="section-heading" id="data-collection-title">3.1 Data Collection</h3>
+          <ul class="motivation-points">
+            <li>We collected <strong>394</strong> livestreaming events from Taobao Live between <strong>October 26 and November 1, 2023</strong>, totaling approximately <strong>3,709 hours</strong>.</li>
+          </ul>
+          <figure class="data-source-figure">
+            <a href="../assets/tfsc-data-collection.png" target="_blank" rel="noopener" aria-label="Open the annotated data collection figure at full size">
+              <img src="../assets/tfsc-data-collection.png" width="1672" height="808" loading="lazy" alt="Annotated Taobao merchant and virtual-streamer screenshots showing the collection locations for merchants, followers, merchant ratings, service ratings, bullet screen comments, shares, members, likes, and product quantity.">
+            </a>
+          </figure>
+        </section>
+        <section class="variable-measurement" aria-labelledby="variable-measurement-title">
+          <h3 class="section-heading" id="variable-measurement-title">3.2 Variable Measurement</h3>
+          <h4 id="independent-variables-title">3.2.1 Independent Variables</h4>
+          <figure class="data-source-figure measurement-figure">
+            <a href="../assets/tfsc-independent-variable-measurement.png" target="_blank" rel="noopener" aria-label="Open the independent-variable measurement pipeline at full size">
+              <img src="../assets/tfsc-independent-variable-measurement.png" width="1825" height="1058" loading="lazy" alt="Measurement pipeline for text naturalness and voice naturalness: transcript-based formality, repetitiveness, and filler words; audio-based signal quality, prosody, and pauses.">
+            </a>
+          </figure>
+          <div class="measurement-columns">
+            <h5 id="text-measurement-title">Text Naturalness</h5>
+            <section class="measurement-dimension measurement-colloquial" aria-labelledby="text-measurement-title colloquial-measurement-title">
+              <h6 id="colloquial-measurement-title"><span class="mechanism-tag">Colloquial Expressions</span></h6>
+              <ul class="motivation-points">
+                <li><strong>Formality (F-Score).</strong> Calculated from part-of-speech frequencies using Jieba, with manual checks; lower scores indicate less formal language.</li>
+                <li><strong>Filler words.</strong> Calculated their frequency in each transcript using a list compiled and reviewed with two linguistic scholars.</li>
+              </ul>
+            </section>
+            <section class="measurement-dimension measurement-diversified" aria-labelledby="text-measurement-title diversified-measurement-title">
+              <h6 id="diversified-measurement-title"><span class="mechanism-tag">Diversified Expressions</span></h6>
+              <ul class="motivation-points">
+                <li><strong>Repetitiveness (Self-BLEU).</strong> Averaged BERTScore similarities between each sentence and the remaining sentences; lower scores indicate less repetition.</li>
+              </ul>
+            </section>
+            <h5 id="voice-measurement-title">Voice Naturalness</h5>
+            <section class="measurement-dimension measurement-dimension--voice measurement-prosody" aria-labelledby="voice-measurement-title prosody-measurement-title">
+              <h6 id="prosody-measurement-title"><span class="mechanism-tag">Prosody</span></h6>
+              <ul class="motivation-points">
+                <li><strong>Prosody (F0 declination).</strong> Extracted pitch contours with Praat, interpolated and smoothed them, then fitted regression slopes to semitone values.</li>
+                <li><strong>Pause frequency.</strong> Used Pydub to detect silence lasting more than 600 ms at an intensity below -30 dBFS.</li>
+              </ul>
+            </section>
+            <section class="measurement-dimension measurement-dimension--voice measurement-signal" aria-labelledby="voice-measurement-title signal-measurement-title">
+              <h6 id="signal-measurement-title"><span class="mechanism-tag">Signal Quality</span></h6>
+              <ul class="motivation-points">
+                <li><strong>Signal quality (NISQA).</strong> Estimated speech quality as a Mean Opinion Score (MOS), validated against manual ratings.</li>
+              </ul>
+            </section>
+          </div>
+          <p class="measurement-summary">We used <strong>Principal Component Analysis (PCA)</strong> to aggregate the respective indicators into separate measures of text naturalness and voice naturalness.</p>
+          <section class="dependent-measurement" aria-labelledby="dependent-variable-title">
+            <h4 id="dependent-variable-title">3.2.2 Dependent Variable</h4>
+            <p class="engagement-equation" aria-label="For each livestream, user engagement equals likes plus shares plus new followers plus new members plus bullet screen comments counted within that livestream.">
+              <strong>User Engagement (per livestream) =</strong>
+              <span>Likes</span>
+              <span class="equation-add">Shares</span>
+              <span class="equation-add">New Followers</span>
+              <span class="equation-add">New Members</span>
+              <span class="equation-add">Bullet Screen Comments</span>
+            </p>
+          </section>
+          <section class="moderator-measurement" aria-labelledby="moderating-variable-title">
+            <h4 id="moderating-variable-title">3.2.3 Moderating Variable <span class="mechanism-tag">Anthropomorphic Appearance</span></h4>
+            <div class="appearance-examples">
+              <figure class="appearance-example">
+                <img src="../assets/anthropomorphic-appearance-low.png" width="151" height="301" loading="lazy" alt="Cartoon virtual streamer illustrating low anthropomorphic appearance.">
+                <figcaption>Low Anthropomorphic Appearance (Cartoon Avatar)</figcaption>
+              </figure>
+              <figure class="appearance-example">
+                <img src="../assets/anthropomorphic-appearance-high.png" width="149" height="301" loading="lazy" alt="Digital human virtual streamer illustrating high anthropomorphic appearance.">
+                <figcaption>High Anthropomorphic Appearance (Digital Human)</figcaption>
+              </figure>
+            </div>
+          </section>
+          <section class="control-measurement" aria-labelledby="control-variables-title">
+            <h4 id="control-variables-title">3.2.4 Control Variables</h4>
+            <table class="control-table" aria-label="Control variables by dimension">
+              <tbody>
+                <tr><th scope="row">Livestream Level</th><td>Weekend, Duration, Subtitles, Background music</td></tr>
+                <tr><th scope="row">Merchant Level</th><td>Followers, Product quantity, Merchant rating</td></tr>
+              </tbody>
+            </table>
+          </section>
+        </section>
+      </section>
+      <section class="research-part" aria-labelledby="part-four-title">
+        <header class="intro">
+          <div class="part-heading">
+            <span class="part-number">Part 4</span>
+            <h2 id="part-four-title">Model Specification and Results</h2>
+          </div>
+        </header>
+        <section class="model-specification" aria-labelledby="model-specification-title">
+          <h3 class="section-heading" id="model-specification-title">4.1 Model Specification</h3>
+          <p class="estimation-method">Why we use a <strong>negative binomial regression model</strong> with robust standard errors:</p>
+          <ul class="motivation-points model-reasons">
+            <li><strong>Non-negative counts:</strong> User engagement is a non-negative count variable.</li>
+            <li><strong>Variance exceeds mean:</strong> Reported variance = <strong>926.071 &gt; 334.056</strong> (mean).</li>
+            <li><strong>Pearson dispersion:</strong> The reported statistic is <strong>1,760.983 &gt; 1</strong>, further indicating overdispersion.</li>
+          </ul>
+          <div class="regression-equation" aria-label="Equation 2 as reported in the paper: user engagement regressed on text naturalness, voice naturalness, their interactions with appearance, and control variables.">
+            <div class="regression-row"><span>User engagement = &beta;<sub>0</sub></span><span>+ &beta;<sub>1</sub> Text naturalness</span><span>+ &beta;<sub>2</sub> Voice naturalness</span><span>+ &beta;<sub>3</sub> Text naturalness &times; Appearance</span></div>
+            <div class="regression-row"><span>+ &beta;<sub>4</sub> Voice naturalness &times; Appearance</span><span>+ &beta;<sub>5</sub> Followers</span><span>+ &beta;<sub>6</sub> Merchant rating</span><span>+ &beta;<sub>7</sub> Service rating</span><span>+ &beta;<sub>8</sub> Duration</span></div>
+            <div class="regression-row"><span>+ &beta;<sub>9</sub> Product quantity</span><span>+ &beta;<sub>10</sub> Weekend</span><span>+ &beta;<sub>11</sub> Subtitles</span><span>+ &beta;<sub>12</sub> BGM + &epsilon;</span></div>
+          </div>
+        </section>
+        <section class="main-results" aria-labelledby="main-results-title">
+          <h3 class="section-heading" id="main-results-title">4.2 Main Results</h3>
+          <p class="results-summary">Regression results provide empirical support for all four hypotheses (H1&ndash;H4).</p>
+          <div class="results-table-wrap">
+            <table class="results-table" aria-label="Main model estimation results for Models 1, 2, and 3">
+              <thead><tr><th scope="col">Variable</th><th scope="col">M1</th><th scope="col">M2</th><th scope="col">M3</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Followers</th><td>0.142<sup>*</sup></td><td>0.136<sup>*</sup></td><td>0.148<sup>**</sup></td></tr>
+                <tr><th scope="row">Merchant rating</th><td>&minus;0.363</td><td>&minus;0.182</td><td>&minus;0.296</td></tr>
+                <tr><th scope="row">Service rating</th><td>0.357</td><td>0.066</td><td>&minus;0.216</td></tr>
+                <tr><th scope="row">Duration</th><td>&minus;0.014</td><td>&minus;0.032</td><td>&minus;0.015</td></tr>
+                <tr><th scope="row">Product quantity</th><td>0.253<sup>**</sup></td><td>0.147</td><td>0.187<sup>**</sup></td></tr>
+                <tr><th scope="row">Weekend</th><td>0.446<sup>*</sup></td><td>0.171</td><td>&minus;0.362</td></tr>
+                <tr><th scope="row">Subtitles</th><td>&minus;0.895<sup>***</sup></td><td>&minus;0.622<sup>*</sup></td><td>&minus;0.150</td></tr>
+                <tr><th scope="row">BGM</th><td>0.307</td><td>0.204</td><td>0.010</td></tr>
+                <tr><th scope="row">Text naturalness</th><td></td><td><strong class="result-negative">&minus;1.568<sup>**</sup></strong></td><td>&minus;2.483<sup>***</sup></td></tr>
+                <tr><th scope="row">Voice naturalness</th><td></td><td><strong class="result-positive">0.802<sup>*</sup></strong></td><td>&minus;1.165<sup>**</sup></td></tr>
+                <tr><th scope="row">Appearance</th><td></td><td></td><td>0.307</td></tr>
+                <tr><th scope="row">Appearance &times; Text naturalness</th><td></td><td></td><td><strong class="result-positive">2.122<sup>*</sup></strong></td></tr>
+                <tr><th scope="row">Appearance &times; Voice naturalness</th><td></td><td></td><td><strong class="result-positive">2.191<sup>***</sup></strong></td></tr>
+                <tr><th scope="row">Constant</th><td>4.516<sup>*</sup></td><td>4.561<sup>**</sup></td><td>4.768<sup>**</sup></td></tr>
+              </tbody>
+              <tfoot><tr><td colspan="4"><div class="significance-key"><span>N = 394</span><span><sup>***</sup> <i>p</i> &lt; 0.01</span><span><sup>**</sup> <i>p</i> &lt; 0.05</span><span><sup>*</sup> <i>p</i> &lt; 0.10</span></div></td></tr></tfoot>
+            </table>
+          </div>
+        </section>
+        <section class="heterogeneity-analysis" aria-labelledby="heterogeneity-title">
+          <h3 class="section-heading" id="heterogeneity-title">4.3 Heterogeneity Analysis</h3>
+          <p>We examine price level, brand type, streamer gender, and product type because they reflect differences in purchase risk, brand familiarity, perceptions of the streamer, and ease of product evaluation. These differences may shape users' reliance on streamer language and thus the effects of language naturalness on engagement.</p>
+          <div class="heterogeneity-scroll" tabindex="0" role="region" aria-label="Heterogeneity regression results across sixteen model columns" id="heterogeneity-scroll">
+            <table class="results-table heterogeneity-table">
+              <colgroup><col class="variable-column"><col class="model-column"><col class="model-column"><col class="model-column"><col class="model-column"><col class="model-column"><col class="model-column"><col class="model-column"><col class="model-column"><col class="model-column"><col class="model-column"><col class="model-column"><col class="model-column"><col class="model-column"><col class="model-column"><col class="model-column"><col class="model-column"></colgroup>
+              <thead>
+                <tr><th class="variable-heading" scope="col" rowspan="3">Variable</th><th class="group-start" scope="colgroup" colspan="4"><span class="mechanism-tag">Price Level</span></th><th class="group-start" scope="colgroup" colspan="4"><span class="mechanism-tag">Brand Type</span></th><th class="group-start" scope="colgroup" colspan="4"><span class="mechanism-tag">Streamer Gender</span></th><th class="group-start" scope="colgroup" colspan="4"><span class="mechanism-tag">Product Type</span></th></tr>
+                <tr><th class="group-start" scope="colgroup" colspan="2">Low price</th><th class="subgroup-start" scope="colgroup" colspan="2">High price</th><th class="group-start" scope="colgroup" colspan="2">Niche brand</th><th class="subgroup-start" scope="colgroup" colspan="2">Famous brand</th><th class="group-start" scope="colgroup" colspan="2">Female voice</th><th class="subgroup-start" scope="colgroup" colspan="2">Male voice</th><th class="group-start" scope="colgroup" colspan="2">Search products</th><th class="subgroup-start" scope="colgroup" colspan="2">Experience products</th></tr>
+                <tr><th class="group-start" scope="col"><small>Main effects</small></th><th scope="col"><small>With interactions</small></th><th class="subgroup-start" scope="col"><small>Main effects</small></th><th scope="col"><small>With interactions</small></th><th class="group-start" scope="col"><small>Main effects</small></th><th scope="col"><small>With interactions</small></th><th class="subgroup-start" scope="col"><small>Main effects</small></th><th scope="col"><small>With interactions</small></th><th class="group-start" scope="col"><small>Main effects</small></th><th scope="col"><small>With interactions</small></th><th class="subgroup-start" scope="col"><small>Main effects</small></th><th scope="col"><small>With interactions</small></th><th class="group-start" scope="col"><small>Main effects</small></th><th scope="col"><small>With interactions</small></th><th class="subgroup-start" scope="col"><small>Main effects</small></th><th scope="col"><small>With interactions</small></th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Text naturalness</th><td class="group-start">&minus;1.182</td><td>&minus;3.380<sup>**</sup></td><td class="subgroup-start"><strong class="result-key">&minus;1.615<sup>**</sup></strong></td><td>&minus;2.040<sup>***</sup></td><td class="group-start"><strong class="result-key">&minus;2.303<sup>**</sup></strong></td><td>&minus;3.477<sup>**</sup></td><td class="subgroup-start">&minus;0.593</td><td>&minus;1.174</td><td class="group-start"><strong class="result-key">&minus;1.204<sup>*</sup></strong></td><td>&minus;1.844<sup>**</sup></td><td class="subgroup-start">&minus;1.733</td><td>&minus;4.722<sup>***</sup></td><td class="group-start">&minus;0.017</td><td>&minus;3.584<sup>**</sup></td><td class="subgroup-start"><strong class="result-key">&minus;1.945<sup>**</sup></strong></td><td>&minus;2.661<sup>**</sup></td></tr>
+                <tr><th scope="row">Voice naturalness</th><td class="group-start">&minus;0.047</td><td>&minus;1.662<sup>*</sup></td><td class="subgroup-start"><strong class="result-key">1.434<sup>**</sup></strong></td><td>&minus;0.725</td><td class="group-start"><strong class="result-key">2.013<sup>***</sup></strong></td><td>&minus;2.225<sup>**</sup></td><td class="subgroup-start">&minus;0.860</td><td>0.032</td><td class="group-start"><strong class="result-key">1.096<sup>*</sup></strong></td><td>&minus;0.595</td><td class="subgroup-start">0.267</td><td>&minus;4.089<sup>***</sup></td><td class="group-start">0.053</td><td>&minus;2.977<sup>**</sup></td><td class="subgroup-start"><strong class="result-key">1.247<sup>*</sup></strong></td><td>&minus;1.049</td></tr>
+                <tr><th scope="row">Appearance</th><td class="group-start"></td><td>0.105</td><td class="subgroup-start"></td><td>&minus;0.135</td><td class="group-start"></td><td>&minus;1.340</td><td class="subgroup-start"></td><td>1.514<sup>**</sup></td><td class="group-start"></td><td>0.544</td><td class="subgroup-start"></td><td>&minus;1.508</td><td class="group-start"></td><td>&minus;0.004</td><td class="subgroup-start"></td><td>&minus;0.183</td></tr>
+                <tr><th scope="row">Text naturalness &times; Appearance</th><td class="group-start"></td><td>3.609<sup>*</sup></td><td class="subgroup-start"></td><td><strong class="result-key">2.346<sup>*</sup></strong></td><td class="group-start"></td><td><strong class="result-key">3.594<sup>*</sup></strong></td><td class="subgroup-start"></td><td>1.345</td><td class="group-start"></td><td><strong class="result-key">2.095<sup>*</sup></strong></td><td class="subgroup-start"></td><td>4.845<sup>**</sup></td><td class="group-start"></td><td>3.847<sup>*</sup></td><td class="subgroup-start"></td><td><strong class="result-key">2.670<sup>*</sup></strong></td></tr>
+                <tr><th scope="row">Voice naturalness &times; Appearance</th><td class="group-start"></td><td>1.807<sup>*</sup></td><td class="subgroup-start"></td><td><strong class="result-key">2.643<sup>***</sup></strong></td><td class="group-start"></td><td><strong class="result-key">4.268<sup>***</sup></strong></td><td class="subgroup-start"></td><td>&minus;0.848</td><td class="group-start"></td><td><strong class="result-key">2.059<sup>**</sup></strong></td><td class="subgroup-start"></td><td>4.849<sup>***</sup></td><td class="group-start"></td><td>2.389</td><td class="subgroup-start"></td><td><strong class="result-key">2.785<sup>***</sup></strong></td></tr>
+                <tr><th scope="row">Controls</th><td class="group-start">Included</td><td>Included</td><td class="subgroup-start">Included</td><td>Included</td><td class="group-start">Included</td><td>Included</td><td class="subgroup-start">Included</td><td>Included</td><td class="group-start">Included</td><td>Included</td><td class="subgroup-start">Included</td><td>Included</td><td class="group-start">Included</td><td>Included</td><td class="subgroup-start">Included</td><td>Included</td></tr>
+                <tr><th scope="row">Constant</th><td class="group-start">6.941<sup>**</sup></td><td>6.471<sup>**</sup></td><td class="subgroup-start">&minus;3.737<sup>*</sup></td><td>&minus;6.386<sup>***</sup></td><td class="group-start">6.677<sup>***</sup></td><td>6.693<sup>**</sup></td><td class="subgroup-start">&minus;5.510<sup>*</sup></td><td>&minus;2.421</td><td class="group-start">5.368<sup>**</sup></td><td>5.595<sup>**</sup></td><td class="subgroup-start">&minus;5.200<sup>*</sup></td><td>&minus;5.675<sup>**</sup></td><td class="group-start">5.065<sup>*</sup></td><td>6.266<sup>*</sup></td><td class="subgroup-start">4.568<sup>*</sup></td><td>4.884<sup>*</sup></td></tr>
+                <tr><th scope="row">Observations</th><td class="group-start">184</td><td>184</td><td class="subgroup-start">210</td><td>210</td><td class="group-start">196</td><td>196</td><td class="subgroup-start">198</td><td>198</td><td class="group-start">332</td><td>332</td><td class="subgroup-start">62</td><td>62</td><td class="group-start">106</td><td>106</td><td class="subgroup-start">288</td><td>288</td></tr>
+              </tbody>
+              <tfoot><tr><td colspan="17"><div class="significance-key"><span><sup>***</sup> <i>p</i> &lt; 0.01</span><span><sup>**</sup> <i>p</i> &lt; 0.05</span><span><sup>*</sup> <i>p</i> &lt; 0.10</span></div></td></tr></tfoot>
+            </table>
+          </div>
+          <div class="heterogeneity-explanations">
+            <h4 class="explanations-heading" id="possible-explanations-title">4.3.1 Possible Explanations</h4>
+            <p>One possible explanation is that user engagement may rely less on streamer language in contexts involving low-priced products, famous brands, male streamers, and search products, making the relationship between language naturalness and user engagement less statistically evident.</p>
+            <section class="heterogeneity-block" aria-labelledby="heterogeneity-price-title">
+              <h4 id="heterogeneity-price-title"><span class="mechanism-tag">Price Level</span></h4>
+              <ol class="mechanism-chain mechanism-chain--aligned heterogeneity-chain" aria-label="Possible explanation for price level heterogeneity">
+                <li>Low-price products</li>
+                <li>Low involvement and low perceived risk</li>
+                <li>Less detailed evaluation of the streamer's information</li>
+                <li><span class="equation-tag moderation-outcome">Less reliance on streamer language</span></li>
+              </ol>
+            </section>
+            <section class="heterogeneity-block" aria-labelledby="heterogeneity-brand-title">
+              <h4 id="heterogeneity-brand-title"><span class="mechanism-tag">Brand Type</span></h4>
+              <ol class="mechanism-chain mechanism-chain--aligned heterogeneity-chain" aria-label="Possible explanation for brand type heterogeneity">
+                <li>Niche brands</li>
+                <li>Limited market recognition and greater information asymmetry</li>
+                <li>Greater need for clear communication of product value</li>
+                <li><span class="equation-tag moderation-outcome">Greater reliance on streamer language</span></li>
+              </ol>
+            </section>
+            <section class="heterogeneity-block" aria-labelledby="heterogeneity-gender-title">
+              <h4 id="heterogeneity-gender-title"><span class="mechanism-tag">Streamer Gender</span></h4>
+              <ol class="mechanism-chain mechanism-chain--aligned heterogeneity-chain" aria-label="Possible explanation for streamer gender heterogeneity">
+                <li>Gender match with the audience</li>
+                <li>Greater emotional resonance and trust</li>
+                <li>More persuasive communication</li>
+                <li><span class="equation-tag moderation-outcome">Greater user engagement</span></li>
+              </ol>
+            </section>
+            <section class="heterogeneity-block" aria-labelledby="heterogeneity-product-title">
+              <h4 id="heterogeneity-product-title"><span class="mechanism-tag">Product Type</span></h4>
+              <ol class="mechanism-chain mechanism-chain--aligned heterogeneity-chain" aria-label="Possible explanation for product type heterogeneity">
+                <li>Search products</li>
+                <li>Product quality and value can be assessed before purchase</li>
+                <li>Less need for the streamer's explanations</li>
+                <li><span class="equation-tag moderation-outcome">Less reliance on streamer language</span></li>
+              </ol>
+            </section>
+          </div>
+        </section>
+        <section class="robustness-analysis" aria-labelledby="robustness-title">
+          <h3 class="section-heading" id="robustness-title">4.4 Robustness Checks</h3>
+          <div class="robustness-scroll" tabindex="0" role="region" aria-label="Robustness check results across ten models">
+            <table class="results-table robustness-table" aria-label="Robustness check results for Models 1 to 10">
+              <colgroup><col class="variable-column"><col class="model-column"><col class="model-column"><col class="model-column"><col class="model-column"><col class="model-column"><col class="model-column"><col class="model-column"><col class="model-column"><col class="model-column"><col class="model-column"></colgroup>
+              <thead><tr><th scope="col">Variable</th><th scope="col">M1</th><th scope="col">M2</th><th scope="col" class="group-start">M3</th><th scope="col">M4</th><th scope="col" class="group-start">M5</th><th scope="col">M6</th><th scope="col" class="group-start">M7</th><th scope="col">M8</th><th scope="col" class="group-start">M9</th><th scope="col">M10</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Text naturalness</th><td><strong class="result-key">&minus;1.837<sup>***</sup></strong></td><td>&minus;3.217<sup>**</sup></td><td class="group-start"><strong class="result-key">&minus;1.008<sup>**</sup></strong></td><td>&minus;1.309<sup>***</sup></td><td class="group-start"><strong class="result-key">&minus;1.573<sup>**</sup></strong></td><td>&minus;2.488<sup>***</sup></td><td class="group-start"><strong class="result-key">&minus;1.554<sup>**</sup></strong></td><td>&minus;2.486<sup>***</sup></td><td class="group-start"><strong class="result-key">&minus;1.906<sup>***</sup></strong></td><td>&minus;4.295<sup>***</sup></td></tr>
+                <tr><th scope="row">Voice naturalness</th><td><strong class="result-key">1.126<sup>**</sup></strong></td><td>&minus;1.007</td><td class="group-start"><strong class="result-key">1.909<sup>***</sup></strong></td><td>2.589<sup>***</sup></td><td class="group-start"><strong class="result-key">0.818<sup>*</sup></strong></td><td>&minus;1.150<sup>*</sup></td><td class="group-start"><strong class="result-key">0.785<sup>*</sup></strong></td><td>&minus;1.164<sup>**</sup></td><td class="group-start"><strong class="result-key">1.409<sup>***</sup></strong></td><td>&minus;1.594<sup>***</sup></td></tr>
+                <tr><th scope="row">Appearance</th><td></td><td>&minus;0.141</td><td class="group-start"></td><td>0.707</td><td class="group-start"></td><td>0.276</td><td class="group-start"></td><td>0.307</td><td class="group-start"></td><td>&minus;0.729</td></tr>
+                <tr><th scope="row">Appearance &times; Text naturalness</th><td></td><td><strong class="result-key">2.608<sup>*</sup></strong></td><td class="group-start"></td><td><strong class="result-key">2.133<sup>*</sup></strong></td><td class="group-start"></td><td><strong class="result-key">2.141<sup>*</sup></strong></td><td class="group-start"></td><td><strong class="result-key">2.140<sup>*</sup></strong></td><td class="group-start"></td><td><strong class="result-key">3.294<sup>**</sup></strong></td></tr>
+                <tr><th scope="row">Appearance &times; Voice naturalness</th><td></td><td><strong class="result-key">2.249<sup>***</sup></strong></td><td class="group-start"></td><td><strong class="result-key">1.214<sup>**</sup></strong></td><td class="group-start"></td><td><strong class="result-key">2.192<sup>***</sup></strong></td><td class="group-start"></td><td><strong class="result-key">2.165<sup>***</sup></strong></td><td class="group-start"></td><td><strong class="result-key">2.886<sup>***</sup></strong></td></tr>
+                <tr><th scope="row">Controls</th><td>Included</td><td>Included</td><td class="group-start">Included</td><td>Included</td><td class="group-start">Included</td><td>Included</td><td class="group-start">Included</td><td>Included</td><td class="group-start">Included</td><td>Included</td></tr>
+                <tr><th scope="row">Constant</th><td>1.468</td><td>2.005</td><td class="group-start">2.709</td><td>2.506</td><td class="group-start">4.572<sup>**</sup></td><td>4.811<sup>**</sup></td><td class="group-start">4.561<sup>**</sup></td><td>4.756<sup>**</sup></td><td class="group-start">0.149</td><td>2.001</td></tr>
+                <tr><th scope="row">N</th><td>394</td><td>394</td><td class="group-start">394</td><td>394</td><td class="group-start">394</td><td>394</td><td class="group-start">394</td><td>394</td><td class="group-start">197</td><td>197</td></tr>
+              </tbody>
+              <tfoot><tr><td colspan="11"><div class="significance-key"><span><sup>***</sup> <i>p</i> &lt; 0.01</span><span><sup>**</sup> <i>p</i> &lt; 0.05</span><span><sup>*</sup> <i>p</i> &lt; 0.10</span></div></td></tr></tfoot>
+            </table>
+          </div>
+          <ul class="motivation-points robustness-methods">
+            <li><strong>Model change (M1&ndash;M2).</strong> Replaced negative binomial regression with Poisson regression.</li>
+            <li><strong>Alternative text measure (M3&ndash;M4).</strong> Used BLEU instead of BERTScore to measure repetitiveness.</li>
+            <li><strong>Alternative voice measure (M5&ndash;M6).</strong> Recomputed F0 declination.</li>
+            <li><strong>Outlier treatment (M7&ndash;M8).</strong> Winsorized user engagement at the bottom and top 0.5%.</li>
+            <li><strong>Subsample test (M9&ndash;M10).</strong> Re-estimated the models using a 50% subsample.</li>
+          </ul>
+        </section>
+      </section>
+    </main>
+
+    <footer>© Ruoxi Zhang · Research project page</footer>
+  </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const contents = document.querySelector('.page-contents');
+      const openContents = document.querySelector('.toc-open-button');
+      const closeContents = document.querySelector('.toc-close-button');
+      const backdrop = document.querySelector('.toc-backdrop');
+      const page = document.querySelector('.page');
+      const desktopContents = window.matchMedia('(min-width:1280px)');
+      const contentsNav = contents.querySelector('.toc-nav');
+      const contentsLinks = [...contentsNav.querySelectorAll('a[href^="#"]')];
+      const contentsTargets = contentsLinks.map(link => document.getElementById(link.hash.slice(1)));
+      contentsTargets.forEach(target => {
+        target.classList.add('toc-target');
+        target.tabIndex = -1;
+      });
+      let desktopContentsOpen = true;
+      try { desktopContentsOpen = sessionStorage.getItem('tfsc-contents-open') !== 'false'; } catch {}
+      let contentsOpen = false;
+      const revealActiveContents = () => {
+        const active = contentsNav.querySelector('[aria-current="location"]');
+        if (!contentsOpen || !active) return;
+        const bounds = contentsNav.getBoundingClientRect();
+        const item = active.getBoundingClientRect();
+        if (item.top < bounds.top) contentsNav.scrollTop -= bounds.top - item.top + 12;
+        else if (item.bottom > bounds.bottom) contentsNav.scrollTop += item.bottom - bounds.bottom + 12;
+      };
+      const setContentsOpen = (open, focus = false) => {
+        contentsOpen = open;
+        const modal = open && !desktopContents.matches;
+        contents.hidden = !open;
+        openContents.hidden = open;
+        openContents.setAttribute('aria-expanded', String(open));
+        closeContents.setAttribute('aria-expanded', String(open));
+        backdrop.hidden = !modal;
+        page.inert = modal;
+        document.body.classList.toggle('toc-expanded', open && desktopContents.matches);
+        document.body.classList.toggle('toc-modal', modal);
+        if (modal) {
+          contents.setAttribute('role', 'dialog');
+          contents.setAttribute('aria-modal', 'true');
+        } else {
+          contents.removeAttribute('role');
+          contents.removeAttribute('aria-modal');
+        }
+        if (desktopContents.matches) {
+          desktopContentsOpen = open;
+          try { sessionStorage.setItem('tfsc-contents-open', String(open)); } catch {}
+        }
+        if (focus) (open ? closeContents : openContents).focus({ preventScroll:true });
+        if (open) requestAnimationFrame(revealActiveContents);
+      };
+      document.body.classList.add('toc-ready');
+      setContentsOpen(desktopContents.matches && desktopContentsOpen);
+      openContents.addEventListener('click', () => setContentsOpen(true, true));
+      closeContents.addEventListener('click', () => setContentsOpen(false, true));
+      backdrop.addEventListener('click', () => setContentsOpen(false, true));
+      desktopContents.addEventListener('change', () => {
+        setContentsOpen(desktopContents.matches && desktopContentsOpen);
+        scheduleContentsUpdate();
+      });
+      contents.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', () => {
+          if (!desktopContents.matches) setContentsOpen(false);
+          document.getElementById(link.hash.slice(1)).focus({ preventScroll:true });
+        });
+      });
+      document.addEventListener('keydown', event => {
+        if (!contentsOpen) return;
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          setContentsOpen(false, true);
+        } else if (event.key === 'Tab' && !desktopContents.matches) {
+          const focusable = [...contents.querySelectorAll('a, button')];
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        }
+      });
+      let activeContentsIndex = -1;
+      let contentsFrame = 0;
+      const updateContents = () => {
+        contentsFrame = 0;
+        const offset = desktopContents.matches ? 56 : 100;
+        let index = 0;
+        contentsTargets.forEach((target, i) => {
+          if (target.getBoundingClientRect().top <= offset) index = i;
+        });
+        if (window.scrollY > 0 && window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+          index = contentsTargets.length - 1;
+        }
+        if (index === activeContentsIndex) return;
+        activeContentsIndex = index;
+        contentsLinks.forEach((link, i) => {
+          if (i === index) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+        contents.querySelectorAll('.toc-group').forEach(group => group.classList.remove('is-current'));
+        const active = contentsLinks[index];
+        active.closest('.toc-group')?.classList.add('is-current');
+        revealActiveContents();
+      };
+      function scheduleContentsUpdate() {
+        if (!contentsFrame) contentsFrame = requestAnimationFrame(updateContents);
+      }
+      window.addEventListener('scroll', scheduleContentsUpdate, { passive:true });
+      window.addEventListener('resize', scheduleContentsUpdate);
+      window.addEventListener('hashchange', scheduleContentsUpdate);
+      updateContents();
+
+      document.querySelectorAll('.heterogeneity-scroll, .robustness-scroll').forEach((tableScroll) => {
+        let drag = null;
+        const endDrag = () => {
+          const pointerId = drag?.pointerId;
+          drag = null;
+          tableScroll.classList.remove('is-dragging');
+          if (pointerId !== undefined && tableScroll.hasPointerCapture(pointerId)) {
+            tableScroll.releasePointerCapture(pointerId);
+          }
+        };
+        tableScroll.addEventListener('pointerdown', (event) => {
+          if (event.pointerType !== 'mouse' || event.button !== 0) return;
+          const bounds = tableScroll.getBoundingClientRect();
+          // Leave the native scrollbar to handle its own dragging.
+          if (event.clientY >= bounds.top + tableScroll.clientHeight) return;
+          drag = { pointerId:event.pointerId, x:event.clientX, scrollLeft:tableScroll.scrollLeft };
+        });
+        tableScroll.addEventListener('pointermove', (event) => {
+          if (!drag || event.pointerId !== drag.pointerId) return;
+          const distance = event.clientX - drag.x;
+          if (Math.abs(distance) < 4 && !tableScroll.hasPointerCapture(event.pointerId)) return;
+          if (!tableScroll.hasPointerCapture(event.pointerId)) tableScroll.setPointerCapture(event.pointerId);
+          tableScroll.classList.add('is-dragging');
+          tableScroll.scrollLeft = drag.scrollLeft - distance;
+          event.preventDefault();
+        });
+        tableScroll.addEventListener('pointerup', endDrag);
+        tableScroll.addEventListener('pointercancel', endDrag);
+        tableScroll.addEventListener('lostpointercapture', endDrag);
+        tableScroll.addEventListener('pointerleave', () => {
+          if (drag && !tableScroll.hasPointerCapture(drag.pointerId)) endDrag();
+        });
+        tableScroll.addEventListener('keydown', (event) => {
+          if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+          event.preventDefault();
+          if (event.key === 'Home') tableScroll.scrollLeft = 0;
+          else if (event.key === 'End') tableScroll.scrollLeft = tableScroll.scrollWidth;
+          else tableScroll.scrollLeft += event.key === 'ArrowRight' ? 100 : -100;
+        });
+      });
+      document.querySelectorAll('video').forEach((video) => {
+        video.muted = true;
+        video.defaultMuted = true;
+        const attempt = video.play();
+        if (attempt && typeof attempt.catch === 'function') attempt.catch(() => {});
+      });
+    });
+  </script>
+</body>
+</html>
